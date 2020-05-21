@@ -1,0 +1,4226 @@
+[
+  {
+    "startTime": 0,
+    "endTime": 1200,
+    "playerName": "Marc-Andre Fleury",
+    "playerId": 8470594
+  },
+  {
+    "startTime": 0,
+    "endTime": 19,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 0,
+    "endTime": 34,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 0,
+    "endTime": 19,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 0,
+    "endTime": 19,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 0,
+    "endTime": 34,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 0,
+    "endTime": 1200,
+    "playerName": "Robin Lehner",
+    "playerId": 8475215
+  },
+  {
+    "startTime": 0,
+    "endTime": 19,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 0,
+    "endTime": 19,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 0,
+    "endTime": 34,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 0,
+    "endTime": 19,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 0,
+    "endTime": 19,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 19,
+    "endTime": 34,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 19,
+    "endTime": 34,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 19,
+    "endTime": 89,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 19,
+    "endTime": 34,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 19,
+    "endTime": 34,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 19,
+    "endTime": 89,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 34,
+    "endTime": 96,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 34,
+    "endTime": 88,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 34,
+    "endTime": 96,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 34,
+    "endTime": 89,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 34,
+    "endTime": 89,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 34,
+    "endTime": 34,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 34,
+    "endTime": 89,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 34,
+    "endTime": 93,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 34,
+    "endTime": 88,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 88,
+    "endTime": 126,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 88,
+    "endTime": 126,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 89,
+    "endTime": 139,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 89,
+    "endTime": 126,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 89,
+    "endTime": 126,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 89,
+    "endTime": 132,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 89,
+    "endTime": 139,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 93,
+    "endTime": 139,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 96,
+    "endTime": 126,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 96,
+    "endTime": 126,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 126,
+    "endTime": 170,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 126,
+    "endTime": 170,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 126,
+    "endTime": 170,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 126,
+    "endTime": 170,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 126,
+    "endTime": 197,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 126,
+    "endTime": 185,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 132,
+    "endTime": 197,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 139,
+    "endTime": 170,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 139,
+    "endTime": 197,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 139,
+    "endTime": 197,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 170,
+    "endTime": 197,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 170,
+    "endTime": 197,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 170,
+    "endTime": 197,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 170,
+    "endTime": 197,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 170,
+    "endTime": 197,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 185,
+    "endTime": 239,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 197,
+    "endTime": 251,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 197,
+    "endTime": 252,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 197,
+    "endTime": 251,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 197,
+    "endTime": 208,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 197,
+    "endTime": 251,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 197,
+    "endTime": 251,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 197,
+    "endTime": 208,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 197,
+    "endTime": 252,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 197,
+    "endTime": 251,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 197,
+    "endTime": 197,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 208,
+    "endTime": 259,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 208,
+    "endTime": 259,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 239,
+    "endTime": 297,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 251,
+    "endTime": 296,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 251,
+    "endTime": 296,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 251,
+    "endTime": 304,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 251,
+    "endTime": 296,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 251,
+    "endTime": 296,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 252,
+    "endTime": 297,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 252,
+    "endTime": 305,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 259,
+    "endTime": 297,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 259,
+    "endTime": 290,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 290,
+    "endTime": 335,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 296,
+    "endTime": 330,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 296,
+    "endTime": 335,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 296,
+    "endTime": 330,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 296,
+    "endTime": 335,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 297,
+    "endTime": 335,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 297,
+    "endTime": 335,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 297,
+    "endTime": 335,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 304,
+    "endTime": 335,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 305,
+    "endTime": 335,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 330,
+    "endTime": 376,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 330,
+    "endTime": 376,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 335,
+    "endTime": 373,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 335,
+    "endTime": 376,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 335,
+    "endTime": 367,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 335,
+    "endTime": 367,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 335,
+    "endTime": 373,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 335,
+    "endTime": 373,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 335,
+    "endTime": 369,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 335,
+    "endTime": 376,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 367,
+    "endTime": 405,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 367,
+    "endTime": 442,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 369,
+    "endTime": 444,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 373,
+    "endTime": 445,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 373,
+    "endTime": 445,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 373,
+    "endTime": 473,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 376,
+    "endTime": 444,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 376,
+    "endTime": 444,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 376,
+    "endTime": 444,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 376,
+    "endTime": 444,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 405,
+    "endTime": 473,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 442,
+    "endTime": 491,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 444,
+    "endTime": 473,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 444,
+    "endTime": 473,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 444,
+    "endTime": 473,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 444,
+    "endTime": 473,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 444,
+    "endTime": 473,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 445,
+    "endTime": 491,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 445,
+    "endTime": 491,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 473,
+    "endTime": 491,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 473,
+    "endTime": 491,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 473,
+    "endTime": 491,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 473,
+    "endTime": 491,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 473,
+    "endTime": 491,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 473,
+    "endTime": 491,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 473,
+    "endTime": 491,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 491,
+    "endTime": 551,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 491,
+    "endTime": 552,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 491,
+    "endTime": 508,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 491,
+    "endTime": 551,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 491,
+    "endTime": 539,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 491,
+    "endTime": 552,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 491,
+    "endTime": 542,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 491,
+    "endTime": 552,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 491,
+    "endTime": 508,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 491,
+    "endTime": 508,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 508,
+    "endTime": 551,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 508,
+    "endTime": 551,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 508,
+    "endTime": 551,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 539,
+    "endTime": 569,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 542,
+    "endTime": 569,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 551,
+    "endTime": 603,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 551,
+    "endTime": 603,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 551,
+    "endTime": 603,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 551,
+    "endTime": 603,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 551,
+    "endTime": 603,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 552,
+    "endTime": 613,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 552,
+    "endTime": 613,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 552,
+    "endTime": 613,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 569,
+    "endTime": 613,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 569,
+    "endTime": 613,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 603,
+    "endTime": 629,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 603,
+    "endTime": 629,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 603,
+    "endTime": 629,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 603,
+    "endTime": 629,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 603,
+    "endTime": 629,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 613,
+    "endTime": 681,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 613,
+    "endTime": 690,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 613,
+    "endTime": 690,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 613,
+    "endTime": 678,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 613,
+    "endTime": 681,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 629,
+    "endTime": 663,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 629,
+    "endTime": 687,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 629,
+    "endTime": 679,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 629,
+    "endTime": 676,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 629,
+    "endTime": 695,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 663,
+    "endTime": 810,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 676,
+    "endTime": 810,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 678,
+    "endTime": 728,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 679,
+    "endTime": 728,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 681,
+    "endTime": 718,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 681,
+    "endTime": 817,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 687,
+    "endTime": 728,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 690,
+    "endTime": 728,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 690,
+    "endTime": 749,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 695,
+    "endTime": 828,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 718,
+    "endTime": 728,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 728,
+    "endTime": 817,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 728,
+    "endTime": 810,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 728,
+    "endTime": 810,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 728,
+    "endTime": 749,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 749,
+    "endTime": 817,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 749,
+    "endTime": 817,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 810,
+    "endTime": 904,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 810,
+    "endTime": 888,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 810,
+    "endTime": 888,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 810,
+    "endTime": 896,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 817,
+    "endTime": 893,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 817,
+    "endTime": 893,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 817,
+    "endTime": 893,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 817,
+    "endTime": 893,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 828,
+    "endTime": 907,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 848,
+    "endTime": 893,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 888,
+    "endTime": 925,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 888,
+    "endTime": 925,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 893,
+    "endTime": 925,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 893,
+    "endTime": 1025,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 893,
+    "endTime": 925,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 893,
+    "endTime": 925,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 893,
+    "endTime": 995,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 896,
+    "endTime": 925,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 904,
+    "endTime": 925,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 907,
+    "endTime": 925,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 925,
+    "endTime": 967,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 925,
+    "endTime": 973,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 925,
+    "endTime": 967,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 925,
+    "endTime": 967,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 925,
+    "endTime": 970,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 925,
+    "endTime": 973,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 925,
+    "endTime": 967,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 925,
+    "endTime": 967,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 967,
+    "endTime": 1044,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 967,
+    "endTime": 1055,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 967,
+    "endTime": 1044,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 967,
+    "endTime": 1044,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 967,
+    "endTime": 1056,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 970,
+    "endTime": 1046,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 973,
+    "endTime": 1029,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 973,
+    "endTime": 1050,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 995,
+    "endTime": 1056,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 1025,
+    "endTime": 1056,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 1029,
+    "endTime": 1109,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 1044,
+    "endTime": 1056,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 1044,
+    "endTime": 1056,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 1044,
+    "endTime": 1090,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 1046,
+    "endTime": 1105,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 1050,
+    "endTime": 1109,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 1055,
+    "endTime": 1056,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 1056,
+    "endTime": 1111,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 1056,
+    "endTime": 1105,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 1056,
+    "endTime": 1105,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 1056,
+    "endTime": 1095,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 1056,
+    "endTime": 1090,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 1056,
+    "endTime": 1105,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 1090,
+    "endTime": 1134,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 1090,
+    "endTime": 1159,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 1095,
+    "endTime": 1134,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 1105,
+    "endTime": 1161,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 1105,
+    "endTime": 1164,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 1105,
+    "endTime": 1164,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 1105,
+    "endTime": 1164,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 1109,
+    "endTime": 1162,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 1109,
+    "endTime": 1162,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 1111,
+    "endTime": 1161,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 1134,
+    "endTime": 1190,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 1134,
+    "endTime": 1190,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 1159,
+    "endTime": 1200,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 1161,
+    "endTime": 1200,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 1161,
+    "endTime": 1200,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 1162,
+    "endTime": 1200,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 1162,
+    "endTime": 1200,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 1164,
+    "endTime": 1200,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 1164,
+    "endTime": 1200,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 1164,
+    "endTime": 1200,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 1190,
+    "endTime": 1200,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 1190,
+    "endTime": 1200,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 1200,
+    "endTime": 1263,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 1200,
+    "endTime": 2400,
+    "playerName": "Marc-Andre Fleury",
+    "playerId": 8470594
+  },
+  {
+    "startTime": 1200,
+    "endTime": 1251,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 1200,
+    "endTime": 1251,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 1200,
+    "endTime": 1262,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 1200,
+    "endTime": 1263,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 1200,
+    "endTime": 2400,
+    "playerName": "Robin Lehner",
+    "playerId": 8475215
+  },
+  {
+    "startTime": 1200,
+    "endTime": 1251,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 1200,
+    "endTime": 1263,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 1200,
+    "endTime": 1263,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 1200,
+    "endTime": 1263,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 1200,
+    "endTime": 1251,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 1251,
+    "endTime": 1306,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 1251,
+    "endTime": 1306,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 1251,
+    "endTime": 1306,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 1251,
+    "endTime": 1306,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 1262,
+    "endTime": 1306,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 1263,
+    "endTime": 1331,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 1263,
+    "endTime": 1331,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 1263,
+    "endTime": 1331,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 1263,
+    "endTime": 1331,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 1263,
+    "endTime": 1355,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 1306,
+    "endTime": 1372,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 1306,
+    "endTime": 1355,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 1306,
+    "endTime": 1376,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 1306,
+    "endTime": 1381,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 1306,
+    "endTime": 1381,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 1331,
+    "endTime": 1381,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 1331,
+    "endTime": 1381,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 1331,
+    "endTime": 1377,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 1331,
+    "endTime": 1381,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 1355,
+    "endTime": 1381,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 1355,
+    "endTime": 1412,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 1372,
+    "endTime": 1428,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 1376,
+    "endTime": 1442,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 1377,
+    "endTime": 1469,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 1381,
+    "endTime": 1437,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 1381,
+    "endTime": 1429,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 1381,
+    "endTime": 1437,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 1381,
+    "endTime": 1429,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 1381,
+    "endTime": 1469,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 1381,
+    "endTime": 1469,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 1412,
+    "endTime": 1476,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 1428,
+    "endTime": 1463,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 1429,
+    "endTime": 1469,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 1429,
+    "endTime": 1469,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 1437,
+    "endTime": 1551,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 1437,
+    "endTime": 1551,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 1442,
+    "endTime": 1498,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 1463,
+    "endTime": 1498,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 1469,
+    "endTime": 1498,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 1469,
+    "endTime": 1542,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 1469,
+    "endTime": 1558,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 1469,
+    "endTime": 1558,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 1469,
+    "endTime": 1498,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 1476,
+    "endTime": 1498,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 1498,
+    "endTime": 1505,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 1498,
+    "endTime": 1547,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 1498,
+    "endTime": 1558,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 1498,
+    "endTime": 1558,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 1498,
+    "endTime": 1505,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 1505,
+    "endTime": 1542,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 1505,
+    "endTime": 1558,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 1542,
+    "endTime": 1577,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 1542,
+    "endTime": 1630,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 1547,
+    "endTime": 1630,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 1551,
+    "endTime": 1630,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 1551,
+    "endTime": 1630,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 1558,
+    "endTime": 1630,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 1558,
+    "endTime": 1577,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 1558,
+    "endTime": 1630,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 1558,
+    "endTime": 1630,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 1558,
+    "endTime": 1630,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 1577,
+    "endTime": 1597,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 1577,
+    "endTime": 1597,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 1597,
+    "endTime": 1630,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 1597,
+    "endTime": 1630,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 1630,
+    "endTime": 1687,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 1630,
+    "endTime": 1687,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 1630,
+    "endTime": 1687,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 1630,
+    "endTime": 1687,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 1630,
+    "endTime": 1669,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 1630,
+    "endTime": 1687,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 1630,
+    "endTime": 1676,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 1630,
+    "endTime": 1663,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 1630,
+    "endTime": 1687,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 1630,
+    "endTime": 1687,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 1663,
+    "endTime": 1687,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 1669,
+    "endTime": 1687,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 1676,
+    "endTime": 1687,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 1687,
+    "endTime": 1751,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 1687,
+    "endTime": 1735,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 1687,
+    "endTime": 1751,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 1687,
+    "endTime": 1749,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 1687,
+    "endTime": 1751,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 1687,
+    "endTime": 1751,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 1687,
+    "endTime": 1728,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 1687,
+    "endTime": 1735,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 1687,
+    "endTime": 1749,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 1687,
+    "endTime": 1749,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 1728,
+    "endTime": 1803,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 1735,
+    "endTime": 1820,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 1735,
+    "endTime": 1796,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 1749,
+    "endTime": 1799,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 1749,
+    "endTime": 1820,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 1749,
+    "endTime": 1803,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 1751,
+    "endTime": 1805,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 1751,
+    "endTime": 1811,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 1751,
+    "endTime": 1841,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 1751,
+    "endTime": 1803,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 1796,
+    "endTime": 1873,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 1799,
+    "endTime": 1873,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 1803,
+    "endTime": 1867,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 1803,
+    "endTime": 1876,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 1803,
+    "endTime": 1915,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 1805,
+    "endTime": 1875,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 1811,
+    "endTime": 1879,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 1820,
+    "endTime": 1879,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 1820,
+    "endTime": 1879,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 1841,
+    "endTime": 1879,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 1867,
+    "endTime": 1879,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 1873,
+    "endTime": 1946,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 1873,
+    "endTime": 1915,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 1875,
+    "endTime": 1878,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 1876,
+    "endTime": 1946,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 1878,
+    "endTime": 1879,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 1879,
+    "endTime": 1946,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 1879,
+    "endTime": 1915,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 1879,
+    "endTime": 1946,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 1879,
+    "endTime": 1915,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 1879,
+    "endTime": 1879,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 1879,
+    "endTime": 1946,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 1879,
+    "endTime": 1946,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 1915,
+    "endTime": 1946,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 1915,
+    "endTime": 1946,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 1915,
+    "endTime": 1946,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 1915,
+    "endTime": 1946,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 1946,
+    "endTime": 2002,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 1946,
+    "endTime": 2006,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 1946,
+    "endTime": 2010,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 1946,
+    "endTime": 2014,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 1946,
+    "endTime": 2009,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 1946,
+    "endTime": 2011,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 1946,
+    "endTime": 1998,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 1946,
+    "endTime": 2014,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 1946,
+    "endTime": 2010,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 1946,
+    "endTime": 2002,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 1998,
+    "endTime": 2083,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 2002,
+    "endTime": 2051,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 2002,
+    "endTime": 2063,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 2006,
+    "endTime": 2047,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 2009,
+    "endTime": 2054,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 2010,
+    "endTime": 2083,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 2010,
+    "endTime": 2083,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 2011,
+    "endTime": 2057,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 2014,
+    "endTime": 2083,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 2014,
+    "endTime": 2083,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 2047,
+    "endTime": 2092,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 2051,
+    "endTime": 2092,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 2054,
+    "endTime": 2102,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 2057,
+    "endTime": 2110,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 2063,
+    "endTime": 2092,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 2083,
+    "endTime": 2187,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 2083,
+    "endTime": 2180,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 2083,
+    "endTime": 2180,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 2083,
+    "endTime": 2180,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 2083,
+    "endTime": 2180,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 2092,
+    "endTime": 2113,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 2092,
+    "endTime": 2113,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 2092,
+    "endTime": 2113,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 2102,
+    "endTime": 2113,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 2110,
+    "endTime": 2113,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 2113,
+    "endTime": 2191,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 2113,
+    "endTime": 2147,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 2113,
+    "endTime": 2191,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 2113,
+    "endTime": 2170,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 2113,
+    "endTime": 2170,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 2147,
+    "endTime": 2216,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 2170,
+    "endTime": 2216,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 2170,
+    "endTime": 2216,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 2180,
+    "endTime": 2245,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 2180,
+    "endTime": 2277,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 2180,
+    "endTime": 2250,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 2180,
+    "endTime": 2245,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 2187,
+    "endTime": 2241,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 2191,
+    "endTime": 2251,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 2191,
+    "endTime": 2191,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 2191,
+    "endTime": 2251,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 2216,
+    "endTime": 2253,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 2216,
+    "endTime": 2275,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 2216,
+    "endTime": 2270,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 2241,
+    "endTime": 2281,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 2245,
+    "endTime": 2328,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 2245,
+    "endTime": 2281,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 2250,
+    "endTime": 2325,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 2251,
+    "endTime": 2309,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 2251,
+    "endTime": 2309,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 2253,
+    "endTime": 2321,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 2270,
+    "endTime": 2340,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 2275,
+    "endTime": 2337,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 2277,
+    "endTime": 2338,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 2281,
+    "endTime": 2334,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 2281,
+    "endTime": 2334,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 2309,
+    "endTime": 2352,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 2309,
+    "endTime": 2352,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 2321,
+    "endTime": 2378,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 2325,
+    "endTime": 2378,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 2328,
+    "endTime": 2378,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 2334,
+    "endTime": 2378,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 2334,
+    "endTime": 2375,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 2337,
+    "endTime": 2378,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 2338,
+    "endTime": 2378,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 2340,
+    "endTime": 2378,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 2352,
+    "endTime": 2400,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 2352,
+    "endTime": 2400,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 2375,
+    "endTime": 2400,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 2378,
+    "endTime": 2400,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 2378,
+    "endTime": 2400,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 2378,
+    "endTime": 2400,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 2378,
+    "endTime": 2400,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 2378,
+    "endTime": 2400,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 2378,
+    "endTime": 2400,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 2378,
+    "endTime": 2400,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 2400,
+    "endTime": 2480,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 2400,
+    "endTime": 3600,
+    "playerName": "Marc-Andre Fleury",
+    "playerId": 8470594
+  },
+  {
+    "startTime": 2400,
+    "endTime": 2457,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 2400,
+    "endTime": 2430,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 2400,
+    "endTime": 2441,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 2400,
+    "endTime": 2428,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 2400,
+    "endTime": 3521,
+    "playerName": "Robin Lehner",
+    "playerId": 8475215
+  },
+  {
+    "startTime": 2400,
+    "endTime": 2425,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 2400,
+    "endTime": 2480,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 2400,
+    "endTime": 2458,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 2400,
+    "endTime": 2480,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 2400,
+    "endTime": 2441,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 2425,
+    "endTime": 2539,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 2428,
+    "endTime": 2528,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 2430,
+    "endTime": 2510,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 2441,
+    "endTime": 2510,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 2441,
+    "endTime": 2519,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 2457,
+    "endTime": 2532,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 2458,
+    "endTime": 2534,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 2480,
+    "endTime": 2518,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 2480,
+    "endTime": 2532,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 2480,
+    "endTime": 2518,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 2510,
+    "endTime": 2582,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 2510,
+    "endTime": 2582,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 2518,
+    "endTime": 2575,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 2518,
+    "endTime": 2575,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 2519,
+    "endTime": 2604,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 2528,
+    "endTime": 2599,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 2532,
+    "endTime": 2612,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 2532,
+    "endTime": 2599,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 2534,
+    "endTime": 2583,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 2539,
+    "endTime": 2604,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 2575,
+    "endTime": 2612,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 2575,
+    "endTime": 2612,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 2582,
+    "endTime": 2612,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 2582,
+    "endTime": 2612,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 2583,
+    "endTime": 2645,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 2599,
+    "endTime": 2653,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 2599,
+    "endTime": 2653,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 2604,
+    "endTime": 2655,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 2604,
+    "endTime": 2655,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 2612,
+    "endTime": 2653,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 2612,
+    "endTime": 2716,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 2612,
+    "endTime": 2655,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 2612,
+    "endTime": 2716,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 2612,
+    "endTime": 2658,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 2612,
+    "endTime": 2612,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 2645,
+    "endTime": 2716,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 2653,
+    "endTime": 2716,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 2653,
+    "endTime": 2716,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 2653,
+    "endTime": 2716,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 2655,
+    "endTime": 2715,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 2655,
+    "endTime": 2715,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 2655,
+    "endTime": 2709,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 2658,
+    "endTime": 2727,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 2709,
+    "endTime": 2715,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 2715,
+    "endTime": 2763,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 2715,
+    "endTime": 2763,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 2715,
+    "endTime": 2772,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 2716,
+    "endTime": 2776,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 2716,
+    "endTime": 2763,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 2716,
+    "endTime": 2763,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 2716,
+    "endTime": 2763,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 2716,
+    "endTime": 2746,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 2716,
+    "endTime": 2763,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 2727,
+    "endTime": 2763,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 2746,
+    "endTime": 2825,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 2763,
+    "endTime": 2785,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 2763,
+    "endTime": 2826,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 2763,
+    "endTime": 2833,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 2763,
+    "endTime": 2832,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 2763,
+    "endTime": 2833,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 2763,
+    "endTime": 2785,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 2763,
+    "endTime": 2785,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 2772,
+    "endTime": 2837,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 2776,
+    "endTime": 2825,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 2785,
+    "endTime": 2842,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 2785,
+    "endTime": 2842,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 2785,
+    "endTime": 2833,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 2825,
+    "endTime": 2867,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 2825,
+    "endTime": 2867,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 2826,
+    "endTime": 2912,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 2832,
+    "endTime": 2917,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 2833,
+    "endTime": 2912,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 2833,
+    "endTime": 2912,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 2833,
+    "endTime": 2912,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 2837,
+    "endTime": 2919,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 2842,
+    "endTime": 2916,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 2842,
+    "endTime": 2912,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 2867,
+    "endTime": 2921,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 2867,
+    "endTime": 2921,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 2912,
+    "endTime": 2943,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 2912,
+    "endTime": 2982,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 2912,
+    "endTime": 2982,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 2912,
+    "endTime": 2943,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 2912,
+    "endTime": 2943,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 2916,
+    "endTime": 2943,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 2917,
+    "endTime": 2943,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 2919,
+    "endTime": 2931,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 2921,
+    "endTime": 2943,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 2921,
+    "endTime": 2943,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 2931,
+    "endTime": 2943,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 2943,
+    "endTime": 2982,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 2943,
+    "endTime": 2982,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 2943,
+    "endTime": 2982,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 2943,
+    "endTime": 2982,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 2943,
+    "endTime": 2982,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 2943,
+    "endTime": 2982,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 2943,
+    "endTime": 2982,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 2943,
+    "endTime": 2982,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 2982,
+    "endTime": 3035,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 2982,
+    "endTime": 3072,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 2982,
+    "endTime": 3037,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 2982,
+    "endTime": 3049,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 2982,
+    "endTime": 3049,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 2982,
+    "endTime": 3042,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 2982,
+    "endTime": 3033,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 2982,
+    "endTime": 3042,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 2982,
+    "endTime": 3047,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 2982,
+    "endTime": 3035,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 3033,
+    "endTime": 3087,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 3035,
+    "endTime": 3101,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 3035,
+    "endTime": 3086,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 3037,
+    "endTime": 3091,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 3042,
+    "endTime": 3087,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 3042,
+    "endTime": 3095,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 3047,
+    "endTime": 3095,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 3049,
+    "endTime": 3086,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 3049,
+    "endTime": 3086,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 3072,
+    "endTime": 3095,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 3086,
+    "endTime": 3174,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 3086,
+    "endTime": 3114,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 3086,
+    "endTime": 3174,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 3087,
+    "endTime": 3174,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 3087,
+    "endTime": 3171,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 3091,
+    "endTime": 3174,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 3095,
+    "endTime": 3114,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 3095,
+    "endTime": 3169,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 3095,
+    "endTime": 3169,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 3101,
+    "endTime": 3114,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 3114,
+    "endTime": 3174,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 3114,
+    "endTime": 3171,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 3114,
+    "endTime": 3174,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 3169,
+    "endTime": 3239,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 3169,
+    "endTime": 3239,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 3171,
+    "endTime": 3236,
+    "playerName": "Ryan Reaves",
+    "playerId": 8471817
+  },
+  {
+    "startTime": 3171,
+    "endTime": 3239,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 3174,
+    "endTime": 3239,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 3174,
+    "endTime": 3239,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 3174,
+    "endTime": 3212,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 3174,
+    "endTime": 3212,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 3174,
+    "endTime": 3211,
+    "playerName": "William Carrier",
+    "playerId": 8477478
+  },
+  {
+    "startTime": 3174,
+    "endTime": 3236,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 3211,
+    "endTime": 3280,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 3212,
+    "endTime": 3288,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 3212,
+    "endTime": 3288,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 3236,
+    "endTime": 3280,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 3236,
+    "endTime": 3280,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 3239,
+    "endTime": 3280,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 3239,
+    "endTime": 3280,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 3239,
+    "endTime": 3264,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 3239,
+    "endTime": 3280,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 3239,
+    "endTime": 3264,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 3264,
+    "endTime": 3299,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 3264,
+    "endTime": 3295,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 3280,
+    "endTime": 3317,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 3280,
+    "endTime": 3316,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 3280,
+    "endTime": 3316,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 3280,
+    "endTime": 3320,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 3280,
+    "endTime": 3327,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 3280,
+    "endTime": 3317,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 3288,
+    "endTime": 3356,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 3288,
+    "endTime": 3356,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 3295,
+    "endTime": 3333,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 3299,
+    "endTime": 3333,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 3316,
+    "endTime": 3372,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 3316,
+    "endTime": 3377,
+    "playerName": "Alex Tuch",
+    "playerId": 8477949
+  },
+  {
+    "startTime": 3317,
+    "endTime": 3364,
+    "playerName": "Leo Komarov",
+    "playerId": 8473463
+  },
+  {
+    "startTime": 3317,
+    "endTime": 3372,
+    "playerName": "Ross Johnston",
+    "playerId": 8477527
+  },
+  {
+    "startTime": 3320,
+    "endTime": 3377,
+    "playerName": "Max Pacioretty",
+    "playerId": 8474157
+  },
+  {
+    "startTime": 3327,
+    "endTime": 3361,
+    "playerName": "Valtteri Filppula",
+    "playerId": 8470047
+  },
+  {
+    "startTime": 3333,
+    "endTime": 3372,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 3333,
+    "endTime": 3372,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 3356,
+    "endTime": 3412,
+    "playerName": "Scott Mayfield",
+    "playerId": 8476429
+  },
+  {
+    "startTime": 3356,
+    "endTime": 3412,
+    "playerName": "Adam Pelech",
+    "playerId": 8476917
+  },
+  {
+    "startTime": 3361,
+    "endTime": 3408,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 3364,
+    "endTime": 3408,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 3372,
+    "endTime": 3420,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 3372,
+    "endTime": 3408,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 3372,
+    "endTime": 3409,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 3372,
+    "endTime": 3420,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 3377,
+    "endTime": 3409,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 3377,
+    "endTime": 3409,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 3408,
+    "endTime": 3438,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 3408,
+    "endTime": 3438,
+    "playerName": "Matt Martin",
+    "playerId": 8474709
+  },
+  {
+    "startTime": 3408,
+    "endTime": 3438,
+    "playerName": "Casey Cizikas",
+    "playerId": 8475231
+  },
+  {
+    "startTime": 3409,
+    "endTime": 3438,
+    "playerName": "Oscar Lindberg",
+    "playerId": 8475715
+  },
+  {
+    "startTime": 3409,
+    "endTime": 3478,
+    "playerName": "Ryan Carpenter",
+    "playerId": 8477846
+  },
+  {
+    "startTime": 3409,
+    "endTime": 3478,
+    "playerName": "Tomas Nosek",
+    "playerId": 8477931
+  },
+  {
+    "startTime": 3412,
+    "endTime": 3432,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 3412,
+    "endTime": 3432,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 3420,
+    "endTime": 3438,
+    "playerName": "Nick Holden",
+    "playerId": 8474207
+  },
+  {
+    "startTime": 3420,
+    "endTime": 3438,
+    "playerName": "Colin Miller",
+    "playerId": 8476525
+  },
+  {
+    "startTime": 3432,
+    "endTime": 3467,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 3432,
+    "endTime": 3438,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 3438,
+    "endTime": 3467,
+    "playerName": "Johnny Boychuk",
+    "playerId": 8470187
+  },
+  {
+    "startTime": 3438,
+    "endTime": 3473,
+    "playerName": "Cal Clutterbuck",
+    "playerId": 8473504
+  },
+  {
+    "startTime": 3438,
+    "endTime": 3458,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 3438,
+    "endTime": 3478,
+    "playerName": "Brock Nelson",
+    "playerId": 8475754
+  },
+  {
+    "startTime": 3438,
+    "endTime": 3458,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 3438,
+    "endTime": 3478,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  },
+  {
+    "startTime": 3438,
+    "endTime": 3478,
+    "playerName": "Anthony Beauvillier",
+    "playerId": 8478463
+  },
+  {
+    "startTime": 3458,
+    "endTime": 3510,
+    "playerName": "Deryk Engelland",
+    "playerId": 8468674
+  },
+  {
+    "startTime": 3458,
+    "endTime": 3510,
+    "playerName": "Shea Theodore",
+    "playerId": 8477447
+  },
+  {
+    "startTime": 3467,
+    "endTime": 3521,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 3467,
+    "endTime": 3600,
+    "playerName": "Ryan Pulock",
+    "playerId": 8477506
+  },
+  {
+    "startTime": 3473,
+    "endTime": 3478,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 3478,
+    "endTime": 3600,
+    "playerName": "Josh Bailey",
+    "playerId": 8474573
+  },
+  {
+    "startTime": 3478,
+    "endTime": 3600,
+    "playerName": "Reilly Smith",
+    "playerId": 8475191
+  },
+  {
+    "startTime": 3478,
+    "endTime": 3600,
+    "playerName": "Anders Lee",
+    "playerId": 8475314
+  },
+  {
+    "startTime": 3478,
+    "endTime": 3543,
+    "playerName": "William Karlsson",
+    "playerId": 8476448
+  },
+  {
+    "startTime": 3478,
+    "endTime": 3543,
+    "playerName": "Jonathan Marchessault",
+    "playerId": 8476539
+  },
+  {
+    "startTime": 3478,
+    "endTime": 3600,
+    "playerName": "Mathew Barzal",
+    "playerId": 8478445
+  },
+  {
+    "startTime": 3510,
+    "endTime": 3600,
+    "playerName": "Brayden McNabb",
+    "playerId": 8475188
+  },
+  {
+    "startTime": 3510,
+    "endTime": 3600,
+    "playerName": "Nate Schmidt",
+    "playerId": 8477220
+  },
+  {
+    "startTime": 3521,
+    "endTime": 3543,
+    "playerName": "Thomas Hickey",
+    "playerId": 8474066
+  },
+  {
+    "startTime": 3521,
+    "endTime": 3600,
+    "playerName": "Jordan Eberle",
+    "playerId": 8474586
+  },
+  {
+    "startTime": 3543,
+    "endTime": 3600,
+    "playerName": "Nick Leddy",
+    "playerId": 8475181
+  },
+  {
+    "startTime": 3543,
+    "endTime": 3600,
+    "playerName": "Cody Eakin",
+    "playerId": 8475236
+  },
+  {
+    "startTime": 3543,
+    "endTime": 3600,
+    "playerName": "Pierre-Edouard Bellemare",
+    "playerId": 8477930
+  }
+]

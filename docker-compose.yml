@@ -1,0 +1,31 @@
+version: '3'
+services:
+  database:
+    image: postgres
+    ports:
+      - '8000:5432'
+    environment:
+      POSTGRES_PASSWORD: Password1
+
+  migrations:
+    build: .
+    command: bash -c "node wait 2000 && npx typeorm migration:run"
+    depends_on:
+      - database
+    environment:
+      TYPEORM_CONNECTION: postgres
+      TYPEORM_URL: postgres://postgres:Password1@database:5432/postgres
+      TYPEORM_MIGRATIONS_TABLE_NAME: migrations
+      TYPEORM_MIGRATIONS: migrations/*.js
+
+  server:
+    build: .
+    ports:
+      - '${PORT}:3000'
+    environment:
+      TYPEORM_CONNECTION: postgres
+      TYPEORM_URL: postgres://postgres:Password1@database:5432/postgres
+      TYPEORM_ENTITIES: src/entities/*.js
+      SECRET: foobar
+    depends_on:
+      - migrations
