@@ -1,32 +1,3 @@
-# ![RealWorld Example App](logo.png)
-
-# Koa Boilerplate 🚀
-
-[![Build Status](https://travis-ci.com/eflem00/koa-boilerplate.svg?branch=master)](https://travis-ci.com/eflem00/koa-boilerplate) [![Coverage Status](https://coveralls.io/repos/github/eflem00/koa-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/eflem00/koa-boilerplate?branch=master) [![dependencies Status](https://david-dm.org/eflem00/koa-boilerplate/status.svg)](https://david-dm.org/eflem00/koa-boilerplate) [![devDependencies Status](https://david-dm.org/eflem00/koa-boilerplate/dev-status.svg)](https://david-dm.org/eflem00/koa-boilerplate?type=dev) [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
-
-### Koa + Typescript + TypeORM codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
-
-## **Features**
-
-- ✔️ Strict Typescript Configuration
-- 🧬 TypeORM For ORM And Migration Configuration
-- 💉 Awilix-Koa For Dependancy Injection And Declarative Routing
-- 🐋 Dockerized For Easy Deployments
-- 💯 100% Unit Test Coverage with Jest And Sinon
-- 🧪 Integration Test Configuration using Docker-Compose, Jest and SuperTest
-- 🚚 CI/CD Pipelines With Travis
-- 🔒 JWT Auth and Password Hashing
-- 📜 Environment Specific With Dotenv
-- ⛔ Joi For Request Validation
-- 🎀 Cleaner Code With ESLint And Prettier
-- 🧭 Realworld Example Implementation
-- 💣 Ejection script to remove example code
-
-## **Coming Soon**
-
-- 🛵 Generator scripts to add controllers, middleware and services with tests
-- 🧪 More integration test coverage
-
 ## **Table of Contents**
 
 - [Prerequisites](#prerequisites)
@@ -51,7 +22,7 @@
     ```
     git clone <url>
 
-    cd koa-boilerplate
+    cd backend
 
     npm install
 

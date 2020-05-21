@@ -8,7 +8,6 @@ import helmet from 'koa-helmet';
 
 import errorMiddleware from './middleware/ErrorMiddleware';
 import Logger from './Logger';
-import SecurityService from './services/SecurityService';
 
 export async function connectWithRetry(): Promise<Connection> {
 	try {
@@ -27,13 +26,11 @@ export async function connectWithRetry(): Promise<Connection> {
 export async function createApp(): Promise<Koa> {
 	const app: Koa = new Koa();
 
-	const securityService: SecurityService = new SecurityService();
 	const connection: Connection = await connectWithRetry();
 
 	Logger.info('successfully established db connection');
 
 	const container: AwilixContainer = createContainer().register({
-		securityService: asValue(securityService),
 		connection: asValue(connection),
 	});
 

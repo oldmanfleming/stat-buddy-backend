@@ -1,5 +1,4 @@
 import { createApp, connectWithRetry } from '../../src/App';
-import SecurityService from '../../src/services/SecurityService';
 import logger from '../../src/Logger';
 import * as typeorm from 'typeorm';
 import sinon, { SinonSandbox, SinonStub } from 'sinon';
@@ -7,7 +6,6 @@ import sinon, { SinonSandbox, SinonStub } from 'sinon';
 describe('App', () => {
 	const sandbox: SinonSandbox = sinon.createSandbox();
 	const mockConnection: SinonStub = sandbox.stub(typeorm, 'createConnection');
-	sandbox.stub(SecurityService);
 	sandbox.stub(logger, 'info');
 	sandbox.stub(logger, 'error');
 

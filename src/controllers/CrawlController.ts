@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { route, POST } from 'awilix-koa';
+import { route, POST, before } from 'awilix-koa';
 import { OK } from 'http-status-codes';
 import { Context } from 'koa';
 import { assert, object, string } from '@hapi/joi';
@@ -7,24 +7,24 @@ import { Connection } from 'typeorm';
 import request, { AxiosPromise } from 'axios';
 
 import Logger from '../Logger';
-import { GameType } from '../lib/Constants';
-import { getEvents } from '../lib/Utils';
-
 import EventRepository from '../repositories/EventRepository';
 import TeamRepository from '../repositories/TeamRepository';
 import PlayerRepository from '../repositories/PlayerRepository';
-
 import { Event } from '../entities/Event';
 import { Team } from '../entities/Team';
 import { Player } from '../entities/Player';
 
-import GameEvents from '../interfaces/GameEvent';
-import GameShifts from '../interfaces/GameShifts';
-import GameSummaries from '../interfaces/GameSummaries';
-import TeamProfile, { TeamData, Roster2 } from '../interfaces/TeamProfile';
-import PlayerProfile, { Person } from '../interfaces/PlayerProfile';
+import { GameType } from '../lib/Constants';
+import { getEvents } from '../lib/Utils';
+import GameEvents from '../lib/interfaces/GameEvent';
+import GameShifts from '../lib/interfaces/GameShifts';
+import GameSummaries from '../lib/interfaces/GameSummaries';
+import TeamProfile, { TeamData, Roster2 } from '../lib/interfaces/TeamProfile';
+import PlayerProfile, { Person } from '../lib/interfaces/PlayerProfile';
+import AdminAuthentication from '../middleware/AdminAuthentication';
 
 @route('/api/crawl')
+@before([AdminAuthentication])
 export default class CrawlController {
 	private _eventRepository: EventRepository;
 	private _playerRepository: PlayerRepository;

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { GameType, EventTypeId, PositionAbbreviation, PlayerType } from './Constants';
-import GameEvents, { AllPlay, Players, PlayerProfile2, Player, Teams3, PlayerStats } from '../interfaces/GameEvent';
-import GameShifts, { Shift } from '../interfaces/GameShifts';
+import GameEvents, { AllPlay, Players, PlayerProfile2, Player, Teams3, PlayerStats } from './interfaces/GameEvent';
+import GameShifts, { Shift } from './interfaces/GameShifts';
 import { Event, EventType } from '../entities/Event';
 
 export function timeToInt(time: string): number {
