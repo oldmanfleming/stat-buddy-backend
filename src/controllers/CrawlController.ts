@@ -3,7 +3,7 @@ import { route, POST, before } from 'awilix-koa';
 import { OK } from 'http-status-codes';
 import { Context } from 'koa';
 import { assert, object, string } from '@hapi/joi';
-import { Connection } from 'typeorm';
+import { Connection, In } from 'typeorm';
 import request, { AxiosPromise } from 'axios';
 
 import Logger from '../Logger';
@@ -37,7 +37,6 @@ export default class CrawlController {
 		this._teamRepository = connection.getCustomRepository(TeamRepository);
 	}
 
-	// TODO: Make admin only
 	@route('/profiles')
 	@POST()
 	async profiles(ctx: Context) {
@@ -124,13 +123,14 @@ export default class CrawlController {
 		assert(
 			ctx.request.body,
 			object({
-				startDate: string().isoDate().required(),
-				endDate: string().isoDate().required(),
+				startDate: string().required(),
+				endDate: string().required(),
 			}),
 		);
 
-		const startDate: Date = new Date(ctx.request.body.startDate);
-		const endDate: Date = new Date(ctx.request.body.endDate);
+		// if you use 00 hours, daylight savings will fuck you and skip/redo a day
+		const startDate: Date = new Date(`${ctx.request.body.startDate}T12:00:00.000Z`);
+		const endDate: Date = new Date(`${ctx.request.body.endDate}T12:00:00.000Z`);
 
 		this.crawlGames(startDate, endDate);
 
@@ -147,15 +147,15 @@ export default class CrawlController {
 
 				if (!schedule.data.dates.length) {
 					Logger.info(`no games found for ${date.toISOString()}`);
-					return;
+					continue;
 				}
 
 				const games: any = schedule.data.dates[0].games.filter(
 					(game: any) => game.gameType !== GameType.AllStarGameType && game.gameType !== GameType.PreSeasonGameType,
 				);
 
-				for (let i: number = 0; i < 1; i++) {
-					const gamePk: number = games[i].gamePk;
+				for (const game of games) {
+					const gamePk: number = game.gamePk;
 					Logger.info(`Beginning game ${gamePk}`);
 
 					const gameEvents: GameEvents = await request(`https://statsapi.web.nhl.com/api/v1/game/${gamePk}/feed/live`);
@@ -165,32 +165,33 @@ export default class CrawlController {
 					);
 
 					// Validate data
+					if ([2018020226, 2017021080, 2017021126, 2017021143].includes(gamePk)) {
+						console.warn('***Bad game found, skipping***');
+						continue;
+					}
+
 					if (gameEvents.data.gameData.status.abstractGameState !== 'Final') {
 						throw new Error('Game state not final yet');
 					}
 
-					if (gameShifts.data.data.length <= 0) {
+					if (!gameShifts.data.data.length) {
 						throw new Error('Game shifts not found');
 					}
 
-					if (gameSummaries.data.data.length <= 0) {
+					if (!gameSummaries.data.data.length) {
 						throw new Error('Game summaries not found');
 					}
 
 					if (!gameEvents.data.liveData.plays.allPlays.length) {
-						console.log(gamePk);
-						throw new Error('Bad game found');
+						throw new Error('Game events not found');
 					}
+
+					await this.crawlPlayers(gameEvents);
 
 					const events: Event[] = getEvents(gamePk, gameEvents, gameShifts);
 
-					// for (let i: number = 0; i < 12; i++) {
-					// 	console.log(events[i]);
-					// }
-					// console.log(events.length);
-
 					if (events.length) {
-						await this._eventRepository.save(events);
+						await this._eventRepository.save(events, { chunk: 1000 });
 						const count: number = await this._eventRepository.count();
 						console.log(count);
 					}
@@ -198,6 +199,61 @@ export default class CrawlController {
 			}
 		} catch (ex) {
 			console.log(ex);
+		}
+	}
+
+	async crawlPlayers(gameEvents: GameEvents) {
+		const playerIds: number[] = [
+			...gameEvents.data.liveData.boxscore.teams.away.skaters,
+			...gameEvents.data.liveData.boxscore.teams.away.goalies,
+			...gameEvents.data.liveData.boxscore.teams.home.skaters,
+			...gameEvents.data.liveData.boxscore.teams.home.goalies,
+		];
+		const existingPlayerIds: any[] = await this._playerRepository
+			.createQueryBuilder('players')
+			.select(['players.id'])
+			.where({ id: In(playerIds) })
+			.getRawMany();
+
+		const existingPlayersSet: Set<number> = new Set<number>();
+		for (const existingPlayerId of existingPlayerIds) {
+			existingPlayersSet.add(existingPlayerId.players_id);
+		}
+
+		const missingPlayerIds: number[] = playerIds.filter((pId: number) => !existingPlayersSet.has(pId));
+
+		if (missingPlayerIds.length) Logger.info(`Found missing players: ${missingPlayerIds}`);
+
+		for (const playerId of missingPlayerIds) {
+			Logger.info(`Syncing missing player: ${playerId}`);
+
+			const playerProfile: PlayerProfile = await request(`https://statsapi.web.nhl.com/api/v1/people/${playerId}?expand=person`);
+			const playerData: Person = playerProfile.data.people[0];
+			const player: Player = Object.assign(new Player(), {
+				id: playerData.id,
+				fullName: playerData.fullName,
+				firstName: playerData.firstName,
+				lastName: playerData.lastName,
+				primaryNumber: playerData.primaryNumber,
+				birthDate: playerData.birthDate,
+				currentAge: playerData.currentAge,
+				birthCity: playerData.birthCity,
+				birthCountry: playerData.birthCountry,
+				nationality: playerData.nationality,
+				height: playerData.height,
+				weight: playerData.weight,
+				active: playerData.active,
+				alternateCaptain: playerData.alternateCaptain,
+				captain: playerData.captain,
+				rookie: playerData.rookie,
+				shootsCatches: playerData.shootsCatches,
+				rosterStatus: playerData.rosterStatus,
+				primaryPosition: playerData.primaryPosition.type,
+				currantAge: playerData.currentAge,
+				currentTeamId: playerData.currentTeam && playerData.currentTeam.id,
+			});
+
+			await this._playerRepository.save(player);
 		}
 	}
 }

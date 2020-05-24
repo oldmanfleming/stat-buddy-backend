@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { GameType, EventTypeId, PositionAbbreviation, PlayerType } from './Constants';
+import { GameType, EventTypeId, PositionAbbreviation, PlayerType, PeriodType, Description } from './Constants';
 import GameEvents, { AllPlay, Players, PlayerProfile2, Player, Teams3, PlayerStats } from './interfaces/GameEvent';
 import GameShifts, { Shift } from './interfaces/GameShifts';
 import { Event, EventType } from '../entities/Event';
@@ -52,6 +52,7 @@ export function getEvent(eventType: EventType, playerId: number, metaInfo: MetaI
 	const { gamePk, gameType, play, teams, homePlayers, awayPlayers, homeGoalieId, awayGoalieId } = metaInfo;
 	const event: Event = Object.assign(new Event(), {
 		gamePk,
+		gameType,
 		eventIdx: play.about.eventIdx,
 		timestamp: new Date(play.about.dateTime),
 		playTime: getTotalSeconds(play.about.period, play.about.periodTime, gameType),
@@ -104,9 +105,6 @@ export function getEvent(eventType: EventType, playerId: number, metaInfo: MetaI
 	return event;
 }
 
-// TODO:
-// Shootout?
-// Stop Event?
 export function getEvents(gamePk: number, gameEvents: GameEvents, gameShifts: GameShifts) {
 	const events: Event[] = [];
 	const gameType: string = gameEvents.data.gameData.game.type;
@@ -115,13 +113,7 @@ export function getEvents(gamePk: number, gameEvents: GameEvents, gameShifts: Ga
 	const playerProfiles: Players = gameEvents.data.gameData.players;
 	const shifts: Shift[] = gameShifts.data.data;
 
-	// Process plays
 	for (const play of plays) {
-		if (!play.players || !play.team) {
-			continue;
-		}
-
-		// Players on ice
 		let homeGoalieId: number | undefined;
 		const homePlayers: Set<number> = new Set();
 		let awayGoalieId: number | undefined;
@@ -131,9 +123,8 @@ export function getEvents(gamePk: number, gameEvents: GameEvents, gameShifts: Ga
 			const endTime: number = getTotalSeconds(shift.period, shift.endTime, gameType);
 			const playTime: number = getTotalSeconds(play.about.period, play.about.periodTime, gameType);
 			const player: PlayerProfile2 | undefined = playerProfiles[`ID${shift.playerId}`];
-			if (!player) {
-				console.log(`***Missing player profile found ${shift.playerId} ${shift.gameId}***`);
-				continue; // Bad data? Game: 2018020003 Player: 8475195
+			if (!player || !shift.duration) {
+				continue;
 			}
 			if (
 				(startTime < playTime && playTime < endTime) ||
@@ -162,154 +153,194 @@ export function getEvents(gamePk: number, gameEvents: GameEvents, gameShifts: Ga
 			homeGoalieId,
 			awayGoalieId,
 		};
-		switch (play.result.eventTypeId) {
-			case EventTypeId.Goal: {
-				const goalEvent: Event = getEvent(EventType.Goal, play.players[0].player.id, metaInfo);
-				events.push(goalEvent);
-				const playerIds: number[] = [goalEvent.playerId];
-				for (let i: number = 1; i < play.players.length; i++) {
-					const player: Player = play.players[i];
-					playerIds.push(player.player.id);
-					if (player.playerType === PlayerType.Goalie) {
-						events.push(getEvent(EventType.GoalAllowed, player.player.id, metaInfo));
-					} else {
-						events.push(getEvent(EventType.Assist, player.player.id, metaInfo));
+		if (play.about.periodType !== PeriodType.Shootout) {
+			switch (play.result.eventTypeId) {
+				case EventTypeId.Goal: {
+					const goalEvent: Event = getEvent(EventType.Goal, play.players[0].player.id, metaInfo);
+					events.push(goalEvent);
+					const playerIds: number[] = [goalEvent.playerId];
+					for (let i: number = 1; i < play.players.length; i++) {
+						const player: Player = play.players[i];
+						playerIds.push(player.player.id);
+						if (player.playerType === PlayerType.Goalie) {
+							events.push(getEvent(EventType.GoalAllowed, player.player.id, metaInfo));
+						} else {
+							events.push(getEvent(EventType.Assist, player.player.id, metaInfo));
+						}
 					}
+					for (const homePlayerId of homePlayers) {
+						if (!playerIds.includes(homePlayerId))
+							events.push(getEvent(goalEvent.isHome ? EventType.OnIceGoal : EventType.OnIceGoalAllowed, homePlayerId, metaInfo));
+					}
+					for (const awayPlayerId of awayPlayers) {
+						if (!playerIds.includes(awayPlayerId))
+							events.push(getEvent(goalEvent.isHome ? EventType.OnIceGoalAllowed : EventType.OnIceGoal, awayPlayerId, metaInfo));
+					}
+					break;
 				}
-				for (const homePlayerId of homePlayers) {
-					if (!playerIds.includes(homePlayerId))
-						events.push(getEvent(goalEvent.isHome ? EventType.OnIceGoal : EventType.OnIceGoalAllowed, homePlayerId, metaInfo));
+				case EventTypeId.Shot: {
+					const shotEvent: Event = getEvent(EventType.Shot, play.players[0].player.id, metaInfo);
+					const saveEvent: Event = getEvent(EventType.Save, play.players[1].player.id, metaInfo);
+					events.push(shotEvent);
+					events.push(saveEvent);
+					for (const homePlayerId of homePlayers) {
+						if (homePlayerId !== shotEvent.playerId && homePlayerId !== saveEvent.playerId)
+							events.push(getEvent(shotEvent.isHome ? EventType.OnIceShot : EventType.OnIceSave, homePlayerId, metaInfo));
+					}
+					for (const awayPlayerId of awayPlayers) {
+						if (awayPlayerId !== shotEvent.playerId && awayPlayerId !== saveEvent.playerId)
+							events.push(getEvent(shotEvent.isHome ? EventType.OnIceSave : EventType.OnIceShot, awayPlayerId, metaInfo));
+					}
+					break;
 				}
-				for (const awayPlayerId of awayPlayers) {
-					if (!playerIds.includes(awayPlayerId))
-						events.push(getEvent(goalEvent.isHome ? EventType.OnIceGoalAllowed : EventType.OnIceGoal, awayPlayerId, metaInfo));
+				case EventTypeId.BlockedShot: {
+					const blockedShotEvent: Event = getEvent(EventType.BlockedShot, play.players[0].player.id, metaInfo);
+					const shotBlockedEvent: Event = getEvent(EventType.ShotBlocked, play.players[1].player.id, metaInfo);
+					events.push(blockedShotEvent);
+					events.push(shotBlockedEvent);
+					if (blockedShotEvent.isHome && homeGoalieId) events.push(getEvent(EventType.OnIceBlockedShot, homeGoalieId, metaInfo));
+					if (!blockedShotEvent.isHome && awayGoalieId) events.push(getEvent(EventType.OnIceShotBlocked, awayGoalieId, metaInfo));
+					for (const homePlayerId of homePlayers) {
+						if (homePlayerId !== blockedShotEvent.playerId && homePlayerId !== shotBlockedEvent.playerId)
+							events.push(getEvent(blockedShotEvent.isHome ? EventType.OnIceBlockedShot : EventType.OnIceShotBlocked, homePlayerId, metaInfo));
+					}
+					for (const awayPlayerId of awayPlayers) {
+						if (awayPlayerId !== blockedShotEvent.playerId && awayPlayerId !== shotBlockedEvent.playerId)
+							events.push(getEvent(blockedShotEvent.isHome ? EventType.OnIceShotBlocked : EventType.OnIceBlockedShot, awayPlayerId, metaInfo));
+					}
+					break;
 				}
-				break;
+				case EventTypeId.MissedShot: {
+					const shotMissEvent: Event = getEvent(EventType.ShotMissed, play.players[0].player.id, metaInfo);
+					events.push(shotMissEvent);
+					if (shotMissEvent.isHome && awayGoalieId) events.push(getEvent(EventType.OnIceMissedShot, awayGoalieId, metaInfo));
+					if (!shotMissEvent.isHome && homeGoalieId) events.push(getEvent(EventType.OnIceMissedShot, homeGoalieId, metaInfo));
+					for (const homePlayerId of homePlayers) {
+						if (homePlayerId !== shotMissEvent.playerId)
+							events.push(getEvent(shotMissEvent.isHome ? EventType.OnIceShotMissed : EventType.OnIceMissedShot, homePlayerId, metaInfo));
+					}
+					for (const awayPlayerId of awayPlayers) {
+						if (awayPlayerId !== shotMissEvent.playerId)
+							events.push(getEvent(shotMissEvent.isHome ? EventType.OnIceMissedShot : EventType.OnIceShotMissed, awayPlayerId, metaInfo));
+					}
+					break;
+				}
+				case EventTypeId.Faceoff: {
+					const faceOffWinEvent: Event = getEvent(EventType.FaceoffWin, play.players[0].player.id, metaInfo);
+					const faceOffLoseEvent: Event = getEvent(EventType.FaceoffLoss, play.players[1].player.id, metaInfo);
+					events.push(faceOffWinEvent);
+					events.push(faceOffLoseEvent);
+					for (const homePlayerId of homePlayers) {
+						if (homePlayerId !== faceOffWinEvent.playerId && homePlayerId !== faceOffLoseEvent.playerId)
+							events.push(getEvent(faceOffWinEvent.isHome ? EventType.OnIceFaceoffWin : EventType.OnIceFaceoffLoss, homePlayerId, metaInfo));
+					}
+					for (const awayPlayerId of awayPlayers) {
+						if (awayPlayerId !== faceOffWinEvent.playerId && awayPlayerId !== faceOffLoseEvent.playerId)
+							events.push(getEvent(faceOffWinEvent.isHome ? EventType.OnIceFaceoffLoss : EventType.OnIceFaceoffWin, awayPlayerId, metaInfo));
+					}
+					break;
+				}
+				case EventTypeId.Takeaway: {
+					const takeAwayEvent: Event = getEvent(EventType.Takeaway, play.players[0].player.id, metaInfo);
+					events.push(takeAwayEvent);
+					for (const homePlayerId of homePlayers) {
+						if (homePlayerId !== takeAwayEvent.playerId)
+							events.push(getEvent(takeAwayEvent.isHome ? EventType.OnIceTakeaway : EventType.OnIceGiveaway, homePlayerId, metaInfo));
+					}
+					for (const awayPlayerId of awayPlayers) {
+						if (awayPlayerId !== takeAwayEvent.playerId)
+							events.push(getEvent(takeAwayEvent.isHome ? EventType.OnIceGiveaway : EventType.OnIceTakeaway, awayPlayerId, metaInfo));
+					}
+					break;
+				}
+				case EventTypeId.Giveaway: {
+					const giveAwayEvent: Event = getEvent(EventType.Giveaway, play.players[0].player.id, metaInfo);
+					events.push(giveAwayEvent);
+					for (const homePlayerId of homePlayers) {
+						if (homePlayerId !== giveAwayEvent.playerId)
+							events.push(getEvent(giveAwayEvent.isHome ? EventType.OnIceGiveaway : EventType.OnIceTakeaway, homePlayerId, metaInfo));
+					}
+					for (const awayPlayerId of awayPlayers) {
+						if (awayPlayerId !== giveAwayEvent.playerId)
+							events.push(getEvent(giveAwayEvent.isHome ? EventType.OnIceTakeaway : EventType.OnIceGiveaway, awayPlayerId, metaInfo));
+					}
+					break;
+				}
+				case EventTypeId.Hit: {
+					const hitEvent: Event = getEvent(EventType.Hit, play.players[0].player.id, metaInfo);
+					const hitAgainstEvent: Event = getEvent(EventType.HitAgainst, play.players[1].player.id, metaInfo);
+					events.push(hitEvent);
+					events.push(hitAgainstEvent);
+					for (const homePlayerId of homePlayers) {
+						if (homePlayerId !== hitEvent.playerId && homePlayerId !== hitAgainstEvent.playerId)
+							events.push(getEvent(hitEvent.isHome ? EventType.OnIceHit : EventType.OnIceHitAgainst, homePlayerId, metaInfo));
+					}
+					for (const awayPlayerId of awayPlayers) {
+						if (awayPlayerId !== hitEvent.playerId && awayPlayerId !== hitAgainstEvent.playerId)
+							events.push(getEvent(hitEvent.isHome ? EventType.OnIceHitAgainst : EventType.OnIceHit, awayPlayerId, metaInfo));
+					}
+					break;
+				}
+				case EventTypeId.Penalty: {
+					const penaltyAgainstEvent: Event = getEvent(EventType.PenaltyAgainst, play.players[0].player.id, metaInfo);
+					events.push(penaltyAgainstEvent);
+					let penaltyForEvent: Event | undefined;
+					if (play.players.length > 1) {
+						penaltyForEvent = getEvent(EventType.PenaltyFor, play.players[1].player.id, metaInfo);
+					}
+					for (const homePlayerId of homePlayers) {
+						if (homePlayerId !== penaltyAgainstEvent.playerId && (!penaltyForEvent || penaltyForEvent.playerId !== homePlayerId))
+							events.push(getEvent(penaltyAgainstEvent.isHome ? EventType.OnIcePenaltyAgainst : EventType.OnIcePenaltyFor, homePlayerId, metaInfo));
+					}
+					for (const awayPlayerId of awayPlayers) {
+						if (awayPlayerId !== penaltyAgainstEvent.playerId && (!penaltyForEvent || penaltyForEvent.playerId !== awayPlayerId))
+							events.push(getEvent(penaltyAgainstEvent.isHome ? EventType.OnIcePenaltyFor : EventType.OnIcePenaltyAgainst, awayPlayerId, metaInfo));
+					}
+					break;
+				}
+				case EventTypeId.Stop: {
+					const players: number[] = [...homePlayers, ...awayPlayers];
+					if (play.result.description === Description.Icing) {
+						for (const playerId of players) {
+							events.push(getEvent(EventType.OnIceIcing, playerId, metaInfo));
+						}
+					} else if (play.result.description === Description.Offside) {
+						for (const playerId of players) {
+							events.push(getEvent(EventType.OnIceOffside, playerId, metaInfo));
+						}
+					} else if (play.result.description.includes(Description.Puck)) {
+						for (const playerId of players) {
+							events.push(getEvent(EventType.OnIcePuckOutOfPlay, playerId, metaInfo));
+						}
+					}
+					break;
+				}
+				default:
+					break;
 			}
-			case EventTypeId.Shot: {
-				const shotEvent: Event = getEvent(EventType.Shot, play.players[0].player.id, metaInfo);
-				const saveEvent: Event = getEvent(EventType.Save, play.players[1].player.id, metaInfo);
-				events.push(shotEvent);
-				events.push(saveEvent);
-				for (const homePlayerId of homePlayers) {
-					if (homePlayerId !== shotEvent.playerId && homePlayerId !== saveEvent.playerId)
-						events.push(getEvent(shotEvent.isHome ? EventType.OnIceShot : EventType.OnIceSave, homePlayerId, metaInfo));
+		} else {
+			switch (play.result.eventTypeId) {
+				case EventTypeId.Goal: {
+					events.push(getEvent(EventType.ShootOutGoal, play.players[0].player.id, metaInfo));
+					events.push(getEvent(EventType.ShootOutGoalAllowed, play.players[1].player.id, metaInfo));
+					break;
 				}
-				for (const awayPlayerId of awayPlayers) {
-					if (awayPlayerId !== shotEvent.playerId && awayPlayerId !== saveEvent.playerId)
-						events.push(getEvent(shotEvent.isHome ? EventType.OnIceSave : EventType.OnIceShot, awayPlayerId, metaInfo));
+				case EventTypeId.Shot: {
+					events.push(getEvent(EventType.ShootOutShot, play.players[0].player.id, metaInfo));
+					events.push(getEvent(EventType.ShootOutSave, play.players[1].player.id, metaInfo));
+					break;
 				}
-				break;
+				case EventTypeId.MissedShot: {
+					const shotMissEvent: Event = getEvent(EventType.ShootOutMiss, play.players[0].player.id, metaInfo);
+					events.push(shotMissEvent);
+					if (shotMissEvent.isHome && awayGoalieId) events.push(getEvent(EventType.ShootOutOnIceMiss, awayGoalieId, metaInfo));
+					if (!shotMissEvent.isHome && homeGoalieId) events.push(getEvent(EventType.ShootOutOnIceMiss, homeGoalieId, metaInfo));
+					break;
+				}
+				default:
+					break;
 			}
-			case EventTypeId.BlockedShot: {
-				const blockedShotEvent: Event = getEvent(EventType.BlockedShot, play.players[0].player.id, metaInfo);
-				const shotBlockedEvent: Event = getEvent(EventType.ShotBlocked, play.players[1].player.id, metaInfo);
-				events.push(blockedShotEvent);
-				events.push(shotBlockedEvent);
-				if (blockedShotEvent.isHome && homeGoalieId) events.push(getEvent(EventType.GoalieOnIceBlockedShot, homeGoalieId, metaInfo));
-				if (!blockedShotEvent.isHome && awayGoalieId) events.push(getEvent(EventType.GoalieOnIceMissedShot, awayGoalieId, metaInfo));
-				for (const homePlayerId of homePlayers) {
-					if (homePlayerId !== blockedShotEvent.playerId && homePlayerId !== shotBlockedEvent.playerId)
-						events.push(getEvent(blockedShotEvent.isHome ? EventType.OnIceBlockedShot : EventType.OnIceShotBlocked, homePlayerId, metaInfo));
-				}
-				for (const awayPlayerId of awayPlayers) {
-					if (awayPlayerId !== blockedShotEvent.playerId && awayPlayerId !== shotBlockedEvent.playerId)
-						events.push(getEvent(blockedShotEvent.isHome ? EventType.OnIceShotBlocked : EventType.OnIceBlockedShot, awayPlayerId, metaInfo));
-				}
-				break;
-			}
-			case EventTypeId.MissedShot: {
-				const shotMissEvent: Event = getEvent(EventType.ShotMissed, play.players[0].player.id, metaInfo);
-				events.push(shotMissEvent);
-				if (shotMissEvent.isHome && awayGoalieId) events.push(getEvent(EventType.GoalieOnIceMissedShot, awayGoalieId, metaInfo));
-				if (!shotMissEvent.isHome && homeGoalieId) events.push(getEvent(EventType.GoalieOnIceMissedShot, homeGoalieId, metaInfo));
-				for (const homePlayerId of homePlayers) {
-					if (homePlayerId !== shotMissEvent.playerId)
-						events.push(getEvent(shotMissEvent.isHome ? EventType.OnIceShotMissed : EventType.OnIceMissedShot, homePlayerId, metaInfo));
-				}
-				for (const awayPlayerId of awayPlayers) {
-					if (awayPlayerId !== shotMissEvent.playerId)
-						events.push(getEvent(shotMissEvent.isHome ? EventType.OnIceMissedShot : EventType.OnIceShotMissed, awayPlayerId, metaInfo));
-				}
-				break;
-			}
-			case EventTypeId.Faceoff: {
-				const faceOffWinEvent: Event = getEvent(EventType.FaceoffWin, play.players[0].player.id, metaInfo);
-				const faceOffLoseEvent: Event = getEvent(EventType.FaceoffLoss, play.players[1].player.id, metaInfo);
-				events.push(faceOffWinEvent);
-				events.push(faceOffLoseEvent);
-				for (const homePlayerId of homePlayers) {
-					if (homePlayerId !== faceOffWinEvent.playerId && homePlayerId !== faceOffLoseEvent.playerId)
-						events.push(getEvent(faceOffWinEvent.isHome ? EventType.OnIceFaceoffWin : EventType.OnIceFaceoffLoss, homePlayerId, metaInfo));
-				}
-				for (const awayPlayerId of awayPlayers) {
-					if (awayPlayerId !== faceOffWinEvent.playerId && awayPlayerId !== faceOffLoseEvent.playerId)
-						events.push(getEvent(faceOffWinEvent.isHome ? EventType.OnIceFaceoffLoss : EventType.OnIceFaceoffWin, awayPlayerId, metaInfo));
-				}
-				break;
-			}
-			case EventTypeId.Takeaway: {
-				const takeAwayEvent: Event = getEvent(EventType.Takeaway, play.players[0].player.id, metaInfo);
-				events.push(takeAwayEvent);
-				for (const homePlayerId of homePlayers) {
-					if (homePlayerId !== takeAwayEvent.playerId)
-						events.push(getEvent(takeAwayEvent.isHome ? EventType.OnIceTakeaway : EventType.OnIceGiveaway, homePlayerId, metaInfo));
-				}
-				for (const awayPlayerId of awayPlayers) {
-					if (awayPlayerId !== takeAwayEvent.playerId)
-						events.push(getEvent(takeAwayEvent.isHome ? EventType.OnIceGiveaway : EventType.OnIceTakeaway, awayPlayerId, metaInfo));
-				}
-				break;
-			}
-			case EventTypeId.Giveaway: {
-				const giveAwayEvent: Event = getEvent(EventType.Giveaway, play.players[0].player.id, metaInfo);
-				events.push(giveAwayEvent);
-				for (const homePlayerId of homePlayers) {
-					if (homePlayerId !== giveAwayEvent.playerId)
-						events.push(getEvent(giveAwayEvent.isHome ? EventType.OnIceGiveaway : EventType.OnIceTakeaway, homePlayerId, metaInfo));
-				}
-				for (const awayPlayerId of awayPlayers) {
-					if (awayPlayerId !== giveAwayEvent.playerId)
-						events.push(getEvent(giveAwayEvent.isHome ? EventType.OnIceTakeaway : EventType.OnIceGiveaway, awayPlayerId, metaInfo));
-				}
-				break;
-			}
-			case EventTypeId.Hit: {
-				const hitEvent: Event = getEvent(EventType.Hit, play.players[0].player.id, metaInfo);
-				const hitAgainstEvent: Event = getEvent(EventType.HitAgainst, play.players[1].player.id, metaInfo);
-				events.push(hitEvent);
-				events.push(hitAgainstEvent);
-				for (const homePlayerId of homePlayers) {
-					if (homePlayerId !== hitEvent.playerId && homePlayerId !== hitAgainstEvent.playerId)
-						events.push(getEvent(hitEvent.isHome ? EventType.OnIceHit : EventType.OnIceHitAgainst, homePlayerId, metaInfo));
-				}
-				for (const awayPlayerId of awayPlayers) {
-					if (awayPlayerId !== hitEvent.playerId && awayPlayerId !== hitAgainstEvent.playerId)
-						events.push(getEvent(hitEvent.isHome ? EventType.OnIceHitAgainst : EventType.OnIceHit, awayPlayerId, metaInfo));
-				}
-				break;
-			}
-			case EventTypeId.Penalty: {
-				const penaltyAgainstEvent: Event = getEvent(EventType.PenaltyAgainst, play.players[0].player.id, metaInfo);
-				events.push(penaltyAgainstEvent);
-				let penaltyForEvent: Event | undefined;
-				if (play.players.length > 1) {
-					penaltyForEvent = getEvent(EventType.PenaltyFor, play.players[1].player.id, metaInfo);
-				}
-				for (const homePlayerId of homePlayers) {
-					if (homePlayerId !== penaltyAgainstEvent.playerId && (!penaltyForEvent || penaltyForEvent.playerId !== homePlayerId))
-						events.push(getEvent(penaltyAgainstEvent.isHome ? EventType.OnIcePenaltyAgainst : EventType.OnIcePenaltyFor, homePlayerId, metaInfo));
-				}
-				for (const awayPlayerId of awayPlayers) {
-					if (awayPlayerId !== penaltyAgainstEvent.playerId && (!penaltyForEvent || penaltyForEvent.playerId !== awayPlayerId))
-						events.push(getEvent(penaltyAgainstEvent.isHome ? EventType.OnIcePenaltyFor : EventType.OnIcePenaltyAgainst, awayPlayerId, metaInfo));
-				}
-				break;
-			}
-			default:
-				break;
 		}
 	}
-
 	return events;
 }

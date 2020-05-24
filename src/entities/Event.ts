@@ -9,13 +9,11 @@ export enum EventType {
 	OnIceHitAgainst = 'ON_ICE_HIT_AGAINST',
 	BlockedShot = 'BLOCKED_SHOT',
 	OnIceBlockedShot = 'ON_ICE_BLOCKED_SHOT',
-	GoalieOnIceBlockedShot = 'GOALIE_ON_ICE_BLOCKED_SHOT',
 	ShotBlocked = 'SHOT_BLOCKED',
 	OnIceShotBlocked = 'ON_ICE_SHOT_BLOCKED',
 	ShotMissed = 'SHOT_MISSED',
 	OnIceShotMissed = 'ON_ICE_SHOT_MISSED',
 	OnIceMissedShot = 'ON_ICE_MISSED_SHOT',
-	GoalieOnIceMissedShot = 'GOALIE_ON_ICE_MISSED_SHOT',
 	Shot = 'SHOT',
 	OnIceShot = 'ON_ICE_SHOT',
 	Save = 'SAVE',
@@ -37,14 +35,28 @@ export enum EventType {
 	OnIceTakeaway = 'ON_ICE_TAKEAWAY',
 	Giveaway = 'GIVEAWAY',
 	OnIceGiveaway = 'ON_ICE_GIVEAWAY',
-	Stop = 'STOP',
+	OnIceOffside = 'ON_ICE_OFFSIDE',
+	OnIceIcing = 'ON_ICE_ICING',
+	OnIcePuckOutOfPlay = 'ON_ICE_PUCK_OUT_OF_PLAY',
+	ShootOutGoal = 'SHOOTOUT_GOAL',
+	ShootOutGoalAllowed = 'SHOOTOUT_GOAL_ALLOWED',
+	ShootOutShot = 'SHOOTOUT_SHOT',
+	ShootOutSave = 'SHOOTOUT_SAVE',
+	ShootOutMiss = 'SHOOTOUT_MISS',
+	ShootOutOnIceMiss = 'SHOOTOUT_ON_ICE_MISS',
 }
 
 @Entity('events')
-@Index(['timestamp', 'eventType', 'playTime', 'teamStrength', 'opposingStrength'])
+@Index(['timestamp', 'eventType', 'playTime', 'gameType', 'teamStrength', 'opposingStrength'])
 export class Event {
 	@PrimaryColumn('int')
 	gamePk!: number;
+
+	@Column()
+	gameType!: string;
+
+	@Column({ type: 'timestamp' })
+	timestamp!: Date;
 
 	@PrimaryColumn('int')
 	eventIdx!: number;
@@ -58,9 +70,6 @@ export class Event {
 	@Column()
 	playTime!: number;
 
-	@Column({ type: 'timestamp' })
-	timestamp!: Date;
-
 	@ManyToOne(() => Player, (player: Player) => player.id)
 	@JoinColumn({ name: 'playerId' })
 	@PrimaryColumn('int')
@@ -69,8 +78,8 @@ export class Event {
 	@Column()
 	playerType!: string;
 
-	@Column()
-	playerHandedness!: string;
+	@Column({ nullable: true })
+	playerHandedness?: string;
 
 	@Column({ type: 'simple-array' })
 	players!: number[];

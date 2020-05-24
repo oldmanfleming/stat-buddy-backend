@@ -13,9 +13,21 @@ export enum EventTypeId {
 	Stop = 'STOP',
 }
 
+export enum Description {
+	Icing = 'Icing',
+	Offside = 'Offside',
+	GoalieStopped = 'Goalie Stopped',
+	Puck = 'Puck',
+}
+
 export enum Side {
 	Home = 'HOME',
 	Away = 'AWAY',
+}
+
+export enum PeriodType {
+	Regular = 'REGULAR',
+	Shootout = 'SHOOTOUT',
 }
 
 export enum SecondaryEventType {
