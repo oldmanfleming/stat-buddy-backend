@@ -395,6 +395,21 @@ export interface Position {
 	abbreviation: string;
 }
 
+export interface GoalieStats {
+	timeOnIce: string;
+	assists: number;
+	goals: number;
+	pim: number;
+	shots: number;
+	saves: number;
+	powerPlaySaves: number;
+	shortHandedSaves: number;
+	evenSaves: number;
+	shortHandedShotsAgainst: number;
+	evenShotsAgainst: number;
+	powerPlayShotsAgainst: number;
+}
+
 export interface SkaterStats {
 	timeOnIce: string;
 	assists: number;
@@ -418,7 +433,8 @@ export interface SkaterStats {
 }
 
 export interface Stats {
-	skaterStats: SkaterStats;
+	skaterStats?: SkaterStats;
+	goalieStats?: GoalieStats;
 }
 
 export interface PlayerStats {
@@ -455,19 +471,6 @@ export interface Coach {
 	position: Position2;
 }
 
-export interface Away5 {
-	team: Team4;
-	teamStats: TeamStats;
-	players: Players2;
-	goalies: number[];
-	skaters: number[];
-	onIce: number[];
-	onIcePlus: OnIcePlu[];
-	scratches: number[];
-	penaltyBox: any[];
-	coaches: Coach[];
-}
-
 export interface Team5 {
 	id: number;
 	name: string;
@@ -476,7 +479,7 @@ export interface Team5 {
 	triCode: string;
 }
 
-export interface Home5 {
+export interface Team {
 	team: Team5;
 	teamStats: TeamStats;
 	players: Players2;
@@ -490,8 +493,8 @@ export interface Home5 {
 }
 
 export interface Teams3 {
-	away: Away5;
-	home: Home5;
+	away: Team;
+	home: Team;
 }
 
 export interface Official2 {

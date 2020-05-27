@@ -1,6 +1,12 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn, Index } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne, Index } from 'typeorm';
 import { Team } from './Team';
 import { Player } from './Player';
+
+export enum Zone {
+	Defensive = 'DEFENSIVE',
+	Neutral = 'NEUTRAL',
+	Offensive = 'OFFENSIVE',
+}
 
 export enum EventType {
 	Hit = 'HIT',
@@ -67,19 +73,21 @@ export class Event {
 	@Column()
 	secondaryType!: string;
 
+	@Column({ nullable: true })
+	secondaryNumber!: number;
+
 	@Column()
 	playTime!: number;
 
 	@ManyToOne(() => Player, (player: Player) => player.id)
-	@JoinColumn({ name: 'playerId' })
-	@PrimaryColumn('int')
+	@PrimaryColumn({ name: 'playerId', type: 'int' })
 	playerId!: number;
 
 	@Column()
 	playerType!: string;
 
-	@Column({ nullable: true })
-	playerHandedness?: string;
+	@Column({ default: '' })
+	playerHandedness!: string;
 
 	@Column({ type: 'simple-array' })
 	players!: number[];
@@ -88,14 +96,11 @@ export class Event {
 	opposingPlayers!: number[];
 
 	@ManyToOne(() => Team, (team: Team) => team.id)
-	@JoinColumn({ name: 'teamId' })
+	@Column({ name: 'teamId' })
 	teamId!: number;
 
-	@Column()
-	isHome!: boolean;
-
 	@ManyToOne(() => Team, (team: Team) => team.id)
-	@JoinColumn({ name: 'opposingTeamId' })
+	@Column({ name: 'opposingTeamId' })
 	opposingTeamId!: number;
 
 	@Column()
@@ -110,6 +115,9 @@ export class Event {
 	@Column()
 	opposingTeamScore!: number;
 
+	@Column()
+	isHome!: boolean;
+
 	@Column({ nullable: true })
 	x?: number;
 
@@ -117,14 +125,5 @@ export class Event {
 	y?: number;
 
 	@Column({ nullable: true })
-	gameWinningGoal?: boolean;
-
-	@Column({ nullable: true })
-	emptyNet?: boolean;
-
-	@Column({ nullable: true })
-	penaltySeverity?: string;
-
-	@Column({ nullable: true })
-	penaltyMinutes?: number;
+	zone?: string;
 }

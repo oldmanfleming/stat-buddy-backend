@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { route, POST, before } from 'awilix-koa';
 import { OK } from 'http-status-codes';
 import { Context } from 'koa';
 import { assert, object, string } from '@hapi/joi';
 import { Connection, In } from 'typeorm';
-import request, { AxiosPromise } from 'axios';
+import request from 'axios';
 
 import Logger from '../Logger';
 import EventRepository from '../repositories/EventRepository';
@@ -15,13 +14,15 @@ import { Team } from '../entities/Team';
 import { Player } from '../entities/Player';
 
 import { GameType } from '../lib/Constants';
-import { getEvents } from '../lib/Utils';
+import { getEvents } from '../lib/EventParser';
+import { constructEvents } from '../lib/EventConstructor';
 import GameEvents from '../lib/interfaces/GameEvent';
 import GameShifts from '../lib/interfaces/GameShifts';
 import GameSummaries from '../lib/interfaces/GameSummaries';
-import TeamProfile, { TeamData, Roster2 } from '../lib/interfaces/TeamProfile';
+import TeamProfile, { TeamData } from '../lib/interfaces/TeamProfile';
 import PlayerProfile, { Person } from '../lib/interfaces/PlayerProfile';
 import AdminAuthentication from '../middleware/AdminAuthentication';
+import PlayerList, { PlayerItem } from '../lib/interfaces/PlayerList';
 
 @route('/api/crawl')
 @before([AdminAuthentication])
@@ -37,30 +38,14 @@ export default class CrawlController {
 		this._teamRepository = connection.getCustomRepository(TeamRepository);
 	}
 
-	@route('/profiles')
+	@route('/teams')
 	@POST()
-	async profiles(ctx: Context) {
-		assert(
-			ctx.request.body,
-			object({
-				year: string().length(8).alphanum().required(),
-			}),
-		);
-
-		this.crawlProfiles(ctx.request.body.year);
-
-		ctx.body = {};
-		ctx.status = OK;
-	}
-
-	async crawlProfiles(year: string) {
-		Logger.info(`Beginning crawl for year: ${year}`);
-
-		const teamProfiles: TeamProfile = await request(`http://statsapi.web.nhl.com/api/v1/teams?expand=team.roster&season=${year}`);
+	async teams(ctx: Context) {
+		const teams: Team[] = [];
+		const teamProfiles: TeamProfile = await request(`http://statsapi.web.nhl.com/api/v1/teams`);
 		for (let i: number = 0; i < teamProfiles.data.teams.length; i += 1) {
 			const teamData: TeamData = teamProfiles.data.teams[i];
-			const team: Team = new Team();
-			Object.assign(team, {
+			const team: Team = Object.assign(new Team(), {
 				id: teamData.id,
 				name: teamData.name,
 				venue: teamData.venue.name,
@@ -73,48 +58,78 @@ export default class CrawlController {
 				conference: teamData.conference.name,
 				conferenceId: teamData.conference.id,
 			});
-			await this._teamRepository.save(team);
+			teams.push(team);
+		}
+		await this._teamRepository.save(teams);
 
-			const roster: Roster2[] = teamData.roster.roster;
-			const requests: AxiosPromise<any>[] = [];
-			for (let j: number = 0; j < roster.length; j += 1) {
-				const playerId: number = roster[j].person.id;
-				requests.push(request(`https://statsapi.web.nhl.com/api/v1/people/${playerId}?expand=person`));
-			}
+		ctx.body = {};
+		ctx.status = OK;
+	}
 
-			const responses: PlayerProfile[] = ((await Promise.all(requests)) as unknown) as PlayerProfile[];
+	@route('/players')
+	@POST()
+	async players(ctx: Context) {
+		assert(
+			ctx.request.body,
+			object({
+				startYear: string().length(8).alphanum().required(),
+				endYear: string().length(8).alphanum().required(),
+			}),
+		);
 
-			for (let k: number = 0; k < responses.length; k += 1) {
-				const playerData: Person = responses[k].data.people[0];
-				const player: Player = Object.assign(new Player(), {
-					id: playerData.id,
-					fullName: playerData.fullName,
-					firstName: playerData.firstName,
-					lastName: playerData.lastName,
-					primaryNumber: playerData.primaryNumber,
-					birthDate: playerData.birthDate,
-					currentAge: playerData.currentAge,
-					birthCity: playerData.birthCity,
-					birthCountry: playerData.birthCountry,
-					nationality: playerData.nationality,
-					height: playerData.height,
-					weight: playerData.weight,
-					active: playerData.active,
-					alternateCaptain: playerData.alternateCaptain,
-					captain: playerData.captain,
-					rookie: playerData.rookie,
-					shootsCatches: playerData.shootsCatches,
-					rosterStatus: playerData.rosterStatus,
-					primaryPosition: playerData.primaryPosition.type,
-					currantAge: playerData.currentAge,
-					currentTeamId: playerData.currentTeam && playerData.currentTeam.id,
-				});
+		const playerList: PlayerList = await request(
+			`https://api.nhle.com/stats/rest/en/skater/summary?cayenneExp=seasonId>=${ctx.request.body.startYear}%20and%20seasonId<=${ctx.request.body.endYear}`,
+		);
 
-				await this._playerRepository.save(player);
-			}
+		const playerIds: number[] = playerList.data.data.map((playerItem: PlayerItem) => playerItem.playerId);
+		const existingPlayerIds: any[] = await this._playerRepository
+			.createQueryBuilder('players')
+			.select(['players.id'])
+			.where({ id: In(playerIds) })
+			.getRawMany();
+
+		const existingPlayersSet: Set<number> = new Set<number>();
+		for (const existingPlayerId of existingPlayerIds) {
+			existingPlayersSet.add(existingPlayerId.players_id);
 		}
 
-		Logger.info(`Finished crawl for year: ${year}`);
+		const newPlayerIds: number[] = playerIds.filter((pId: number) => !existingPlayersSet.has(pId));
+
+		const players: Player[] = [];
+		for (let i: number = 0; i < newPlayerIds.length; i += 1) {
+			const playerId: number = newPlayerIds[i];
+			const playerProfile: PlayerProfile = await request(`https://statsapi.web.nhl.com/api/v1/people/${playerId}?expand=person`);
+			const playerData: Person = playerProfile.data.people[0];
+			const player: Player = Object.assign(new Player(), {
+				id: playerData.id,
+				fullName: playerData.fullName,
+				firstName: playerData.firstName,
+				lastName: playerData.lastName,
+				primaryNumber: playerData.primaryNumber,
+				birthDate: playerData.birthDate,
+				currentAge: playerData.currentAge,
+				birthCity: playerData.birthCity,
+				birthCountry: playerData.birthCountry,
+				nationality: playerData.nationality,
+				height: playerData.height,
+				weight: playerData.weight,
+				active: playerData.active,
+				alternateCaptain: playerData.alternateCaptain,
+				captain: playerData.captain,
+				rookie: playerData.rookie,
+				shootsCatches: playerData.shootsCatches,
+				rosterStatus: playerData.rosterStatus,
+				primaryPosition: playerData.primaryPosition.type,
+				currantAge: playerData.currentAge,
+				currentTeamId: playerData.currentTeam && playerData.currentTeam.id,
+			});
+			players.push(player);
+		}
+
+		await this._playerRepository.save(players, { chunk: 1000 });
+
+		ctx.body = {};
+		ctx.status = OK;
 	}
 
 	@route('/games')
@@ -154,8 +169,8 @@ export default class CrawlController {
 					(game: any) => game.gameType !== GameType.AllStarGameType && game.gameType !== GameType.PreSeasonGameType,
 				);
 
-				for (const game of games) {
-					const gamePk: number = game.gamePk;
+				for (let i: number = 5; i < 6; i++) {
+					const gamePk: number = games[i].gamePk;
 					Logger.info(`Beginning game ${gamePk}`);
 
 					const gameEvents: GameEvents = await request(`https://statsapi.web.nhl.com/api/v1/game/${gamePk}/feed/live`);
@@ -163,12 +178,6 @@ export default class CrawlController {
 					const gameSummaries: GameSummaries = await request(
 						`https://api.nhle.com/stats/rest/en/team/summary?reportType=basic&isGame=true&reportName=teamsummary&cayenneExp=gameId=${gamePk}`,
 					);
-
-					// Validate data
-					if ([2018020226, 2017021080, 2017021126, 2017021143].includes(gamePk)) {
-						console.warn('***Bad game found, skipping***');
-						continue;
-					}
 
 					if (gameEvents.data.gameData.status.abstractGameState !== 'Final') {
 						throw new Error('Game state not final yet');
@@ -182,13 +191,7 @@ export default class CrawlController {
 						throw new Error('Game summaries not found');
 					}
 
-					if (!gameEvents.data.liveData.plays.allPlays.length) {
-						throw new Error('Game events not found');
-					}
-
-					await this.crawlPlayers(gameEvents);
-
-					const events: Event[] = getEvents(gamePk, gameEvents, gameShifts);
+					const events: Event[] = gameEvents.data.liveData.plays.allPlays.length ? getEvents(gamePk, gameEvents, gameShifts) : constructEvents(gameEvents);
 
 					if (events.length) {
 						await this._eventRepository.save(events, { chunk: 1000 });
@@ -198,62 +201,7 @@ export default class CrawlController {
 				}
 			}
 		} catch (ex) {
-			console.log(ex);
-		}
-	}
-
-	async crawlPlayers(gameEvents: GameEvents) {
-		const playerIds: number[] = [
-			...gameEvents.data.liveData.boxscore.teams.away.skaters,
-			...gameEvents.data.liveData.boxscore.teams.away.goalies,
-			...gameEvents.data.liveData.boxscore.teams.home.skaters,
-			...gameEvents.data.liveData.boxscore.teams.home.goalies,
-		];
-		const existingPlayerIds: any[] = await this._playerRepository
-			.createQueryBuilder('players')
-			.select(['players.id'])
-			.where({ id: In(playerIds) })
-			.getRawMany();
-
-		const existingPlayersSet: Set<number> = new Set<number>();
-		for (const existingPlayerId of existingPlayerIds) {
-			existingPlayersSet.add(existingPlayerId.players_id);
-		}
-
-		const missingPlayerIds: number[] = playerIds.filter((pId: number) => !existingPlayersSet.has(pId));
-
-		if (missingPlayerIds.length) Logger.info(`Found missing players: ${missingPlayerIds}`);
-
-		for (const playerId of missingPlayerIds) {
-			Logger.info(`Syncing missing player: ${playerId}`);
-
-			const playerProfile: PlayerProfile = await request(`https://statsapi.web.nhl.com/api/v1/people/${playerId}?expand=person`);
-			const playerData: Person = playerProfile.data.people[0];
-			const player: Player = Object.assign(new Player(), {
-				id: playerData.id,
-				fullName: playerData.fullName,
-				firstName: playerData.firstName,
-				lastName: playerData.lastName,
-				primaryNumber: playerData.primaryNumber,
-				birthDate: playerData.birthDate,
-				currentAge: playerData.currentAge,
-				birthCity: playerData.birthCity,
-				birthCountry: playerData.birthCountry,
-				nationality: playerData.nationality,
-				height: playerData.height,
-				weight: playerData.weight,
-				active: playerData.active,
-				alternateCaptain: playerData.alternateCaptain,
-				captain: playerData.captain,
-				rookie: playerData.rookie,
-				shootsCatches: playerData.shootsCatches,
-				rosterStatus: playerData.rosterStatus,
-				primaryPosition: playerData.primaryPosition.type,
-				currantAge: playerData.currentAge,
-				currentTeamId: playerData.currentTeam && playerData.currentTeam.id,
-			});
-
-			await this._playerRepository.save(player);
+			console.error(ex);
 		}
 	}
 }

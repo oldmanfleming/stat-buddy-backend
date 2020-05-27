@@ -74,8 +74,6 @@
 			"@typescript-eslint/typedef": [
 				"error",
 				{
-					"arrayDestructuring": true,
-					"objectDestructuring": true,
 					"variableDeclaration": true
 				}
 			],

@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/typedef */
 import { GameType, EventTypeId, PositionAbbreviation, PlayerType, PeriodType, Description } from './Constants';
 import GameEvents, { AllPlay, Players, PlayerProfile2, Player, Teams3, PlayerStats } from './interfaces/GameEvent';
 import GameShifts, { Shift } from './interfaces/GameShifts';
-import { Event, EventType } from '../entities/Event';
+import { Event, EventType, Zone } from '../entities/Event';
 
 export function timeToInt(time: string): number {
 	let leadMinute: number;
@@ -48,7 +48,6 @@ interface MetaInfo {
 }
 
 export function getEvent(eventType: EventType, playerId: number, metaInfo: MetaInfo): Event {
-	// eslint-disable-next-line @typescript-eslint/typedef
 	const { gamePk, gameType, play, teams, homePlayers, awayPlayers, homeGoalieId, awayGoalieId } = metaInfo;
 	const event: Event = Object.assign(new Event(), {
 		gamePk,
@@ -93,14 +92,47 @@ export function getEvent(eventType: EventType, playerId: number, metaInfo: MetaI
 	event.players = isHome ? homePlayersPlusGoalie : awayPlayersPlusGoalie;
 	event.opposingPlayers = isHome ? awayPlayersPlusGoalie : homePlayersPlusGoalie;
 
+	// normalize coordinates and zone
+	if (play.coordinates.x !== undefined && play.coordinates.y !== undefined) {
+		const { x, y } = play.coordinates;
+		const { period } = play.about;
+
+		if ((isHome && period % 2 !== 0) || (!isHome && period % 2 === 0)) {
+			// is home and period odd
+			// is away and period even
+			if (x > 0) {
+				event.zone = Zone.Defensive;
+			} else if (x < 0) {
+				event.zone = Zone.Offensive;
+			} else {
+				event.zone = Zone.Neutral;
+			}
+			event.x = x;
+			event.y = y;
+		} else if ((isHome && period % 2 === 0) || (!isHome && period % 2 !== 0)) {
+			// is home and period even
+			// is away and period odd
+			if (x > 0) {
+				event.zone = Zone.Offensive;
+			} else if (x < 0) {
+				event.zone = Zone.Defensive;
+			} else {
+				event.zone = Zone.Neutral;
+			}
+			event.x = -x;
+			event.y = y;
+		}
+	}
+
 	// additional info
 	event.secondaryType = play.result.secondaryType ?? play.result.description;
-	event.gameWinningGoal = play.result.gameWinningGoal;
-	event.emptyNet = play.result.emptyNet;
-	event.penaltySeverity = play.result.penaltySeverity;
-	event.penaltyMinutes = play.result.penaltyMinutes;
-	event.x = play.coordinates.x;
-	event.y = play.coordinates.y;
+	if (play.result.gameWinningGoal) {
+		event.secondaryNumber = 1;
+	} else if (play.result.emptyNet) {
+		event.secondaryNumber = 2;
+	} else if (play.result.penaltyMinutes) {
+		event.secondaryNumber = play.result.penaltyMinutes;
+	}
 
 	return event;
 }
@@ -231,12 +263,14 @@ export function getEvents(gamePk: number, gameEvents: GameEvents, gameShifts: Ga
 					events.push(faceOffWinEvent);
 					events.push(faceOffLoseEvent);
 					for (const homePlayerId of homePlayers) {
-						if (homePlayerId !== faceOffWinEvent.playerId && homePlayerId !== faceOffLoseEvent.playerId)
+						if (homePlayerId !== faceOffWinEvent.playerId && homePlayerId !== faceOffLoseEvent.playerId) {
 							events.push(getEvent(faceOffWinEvent.isHome ? EventType.OnIceFaceoffWin : EventType.OnIceFaceoffLoss, homePlayerId, metaInfo));
+						}
 					}
 					for (const awayPlayerId of awayPlayers) {
-						if (awayPlayerId !== faceOffWinEvent.playerId && awayPlayerId !== faceOffLoseEvent.playerId)
+						if (awayPlayerId !== faceOffWinEvent.playerId && awayPlayerId !== faceOffLoseEvent.playerId) {
 							events.push(getEvent(faceOffWinEvent.isHome ? EventType.OnIceFaceoffLoss : EventType.OnIceFaceoffWin, awayPlayerId, metaInfo));
+						}
 					}
 					break;
 				}
