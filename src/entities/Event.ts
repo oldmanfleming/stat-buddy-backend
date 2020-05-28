@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, Index } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne, Index, JoinColumn } from 'typeorm';
 import { Team } from './Team';
 import { Player } from './Player';
 
@@ -80,7 +80,8 @@ export class Event {
 	playTime!: number;
 
 	@ManyToOne(() => Player, (player: Player) => player.id)
-	@PrimaryColumn({ name: 'playerId', type: 'int' })
+	@PrimaryColumn({ type: 'int' })
+	@JoinColumn({ name: 'playerId' })
 	playerId!: number;
 
 	@Column()
@@ -96,11 +97,11 @@ export class Event {
 	opposingPlayers!: number[];
 
 	@ManyToOne(() => Team, (team: Team) => team.id)
-	@Column({ name: 'teamId' })
+	@JoinColumn({ name: 'teamId' })
 	teamId!: number;
 
 	@ManyToOne(() => Team, (team: Team) => team.id)
-	@Column({ name: 'opposingTeamId' })
+	@JoinColumn({ name: 'opposingTeamId' })
 	opposingTeamId!: number;
 
 	@Column()

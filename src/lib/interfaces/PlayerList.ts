@@ -28,7 +28,7 @@ export interface PlayerItem {
 }
 
 export interface Data {
-	data: Datum[];
+	data: PlayerItem[];
 	total: number;
 }
 

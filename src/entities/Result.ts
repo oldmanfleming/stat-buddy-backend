@@ -1,6 +1,12 @@
-import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Player } from './Player';
 import { Team } from './Team';
+
+export enum ResultType {
+	Win = 'WIN',
+	Loss = 'LOSS',
+	OTLoss = 'OT_LOSS',
+}
 
 @Entity('results')
 export class Result {
@@ -11,21 +17,15 @@ export class Result {
 	gamePk!: number;
 
 	@Column()
-	venue!: string;
-
-	@Column()
 	isHome!: boolean;
 
-	@ManyToOne(() => Player, (player: Player) => player.id)
-	@PrimaryColumn({ name: 'playerId', nullable: true })
-	playerId!: number;
-
 	@ManyToOne(() => Team, (team: Team) => team.id)
-	@PrimaryColumn({ name: 'teamId' })
+	@PrimaryColumn()
+	@JoinColumn({ name: 'teamId' })
 	teamId!: number;
 
 	@ManyToOne(() => Team, (team: Team) => team.id)
-	@Column({ name: 'opposingTeamId' })
+	@JoinColumn({ name: 'opposingTeamId' })
 	opposingTeamId!: number;
 
 	@Column()
@@ -35,14 +35,16 @@ export class Result {
 	opposingTeamScore!: number;
 
 	@Column()
-	result!: string;
+	resultType!: string;
 
 	@Column()
 	points!: number;
 
-	@Column({ nullable: true })
-	decision!: boolean;
+	@ManyToOne(() => Player, (player: Player) => player.id)
+	@JoinColumn({ name: 'goalieStartId' })
+	goalieStartId!: number;
 
-	@Column({ nullable: true })
-	started!: boolean;
+	@ManyToOne(() => Player, (player: Player) => player.id)
+	@JoinColumn({ name: 'goalieDecisionId' })
+	goalieDecisionId!: number;
 }

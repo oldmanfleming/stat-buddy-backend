@@ -22,7 +22,10 @@ import GameSummaries from '../lib/interfaces/GameSummaries';
 import TeamProfile, { TeamData } from '../lib/interfaces/TeamProfile';
 import PlayerProfile, { Person } from '../lib/interfaces/PlayerProfile';
 import AdminAuthentication from '../middleware/AdminAuthentication';
-import PlayerList, { PlayerItem } from '../lib/interfaces/PlayerList';
+import PlayerList from '../lib/interfaces/PlayerList';
+import { Result } from '../entities/Result';
+import ResultRepository from '../repositories/ResultRepository';
+import { getResults } from '../lib/ResultParser';
 
 @route('/api/crawl')
 @before([AdminAuthentication])
@@ -30,12 +33,14 @@ export default class CrawlController {
 	private _eventRepository: EventRepository;
 	private _playerRepository: PlayerRepository;
 	private _teamRepository: TeamRepository;
+	private _resultRepository: ResultRepository;
 
 	// Any Dependencies registered to the container can be injected here
 	constructor({ connection }: { connection: Connection }) {
 		this._eventRepository = connection.getCustomRepository(EventRepository);
 		this._playerRepository = connection.getCustomRepository(PlayerRepository);
 		this._teamRepository = connection.getCustomRepository(TeamRepository);
+		this._resultRepository = connection.getCustomRepository(ResultRepository);
 	}
 
 	@route('/teams')
@@ -77,56 +82,7 @@ export default class CrawlController {
 			}),
 		);
 
-		const playerList: PlayerList = await request(
-			`https://api.nhle.com/stats/rest/en/skater/summary?cayenneExp=seasonId>=${ctx.request.body.startYear}%20and%20seasonId<=${ctx.request.body.endYear}`,
-		);
-
-		const playerIds: number[] = playerList.data.data.map((playerItem: PlayerItem) => playerItem.playerId);
-		const existingPlayerIds: any[] = await this._playerRepository
-			.createQueryBuilder('players')
-			.select(['players.id'])
-			.where({ id: In(playerIds) })
-			.getRawMany();
-
-		const existingPlayersSet: Set<number> = new Set<number>();
-		for (const existingPlayerId of existingPlayerIds) {
-			existingPlayersSet.add(existingPlayerId.players_id);
-		}
-
-		const newPlayerIds: number[] = playerIds.filter((pId: number) => !existingPlayersSet.has(pId));
-
-		const players: Player[] = [];
-		for (let i: number = 0; i < newPlayerIds.length; i += 1) {
-			const playerId: number = newPlayerIds[i];
-			const playerProfile: PlayerProfile = await request(`https://statsapi.web.nhl.com/api/v1/people/${playerId}?expand=person`);
-			const playerData: Person = playerProfile.data.people[0];
-			const player: Player = Object.assign(new Player(), {
-				id: playerData.id,
-				fullName: playerData.fullName,
-				firstName: playerData.firstName,
-				lastName: playerData.lastName,
-				primaryNumber: playerData.primaryNumber,
-				birthDate: playerData.birthDate,
-				currentAge: playerData.currentAge,
-				birthCity: playerData.birthCity,
-				birthCountry: playerData.birthCountry,
-				nationality: playerData.nationality,
-				height: playerData.height,
-				weight: playerData.weight,
-				active: playerData.active,
-				alternateCaptain: playerData.alternateCaptain,
-				captain: playerData.captain,
-				rookie: playerData.rookie,
-				shootsCatches: playerData.shootsCatches,
-				rosterStatus: playerData.rosterStatus,
-				primaryPosition: playerData.primaryPosition.type,
-				currantAge: playerData.currentAge,
-				currentTeamId: playerData.currentTeam && playerData.currentTeam.id,
-			});
-			players.push(player);
-		}
-
-		await this._playerRepository.save(players, { chunk: 1000 });
+		this.crawlPlayers(ctx.request.body.startYear, ctx.request.body.endYear);
 
 		ctx.body = {};
 		ctx.status = OK;
@@ -151,6 +107,90 @@ export default class CrawlController {
 
 		ctx.body = {};
 		ctx.status = OK;
+	}
+
+	async crawlPlayers(startYear: string, endYear: string) {
+		try {
+			Logger.info(`Beginning player crawl`);
+
+			const playerIdSet: Set<number> = new Set();
+
+			let countRequest: PlayerList = await request(
+				`https://api.nhle.com/stats/rest/en/skater/summary?cayenneExp=seasonId>=${startYear}%20and%20seasonId<=${endYear}`,
+			);
+			for (let i: number = 0; i < countRequest.data.total; i += 100) {
+				const playerList: PlayerList = await request(
+					`https://api.nhle.com/stats/rest/en/skater/summary?start=${i}&limit=${100}&cayenneExp=seasonId>=${startYear}%20and%20seasonId<=${endYear}`,
+				);
+				for (const player of playerList.data.data) {
+					playerIdSet.add(player.playerId);
+				}
+			}
+
+			countRequest = await request(`https://api.nhle.com/stats/rest/en/goalie/summary?cayenneExp=seasonId>=${startYear}%20and%20seasonId<=${endYear}`);
+			for (let i: number = 0; i < countRequest.data.total; i += 100) {
+				const playerList: PlayerList = await request(
+					`https://api.nhle.com/stats/rest/en/goalie/summary?start=${i}&limit=${100}&cayenneExp=seasonId>=${startYear}%20and%20seasonId<=${endYear}`,
+				);
+				for (const player of playerList.data.data) {
+					playerIdSet.add(player.playerId);
+				}
+			}
+
+			const playerIds: number[] = [...playerIdSet];
+
+			const existingPlayerIds: any[] = await this._playerRepository
+				.createQueryBuilder('players')
+				.select(['players.id'])
+				.where({ id: In(playerIds) })
+				.getRawMany();
+
+			const existingPlayersSet: Set<number> = new Set<number>();
+			for (const existingPlayerId of existingPlayerIds) {
+				existingPlayersSet.add(existingPlayerId.players_id);
+			}
+
+			const newPlayerIds: number[] = playerIds.filter((pId: number) => !existingPlayersSet.has(pId));
+
+			const playerProfiles: Player[] = [];
+			for (let i: number = 0; i < newPlayerIds.length; i += 1) {
+				console.log(i);
+				const playerId: number = newPlayerIds[i];
+				const playerProfile: PlayerProfile = await request(`https://statsapi.web.nhl.com/api/v1/people/${playerId}?expand=person`);
+				const playerData: Person = playerProfile.data.people[0];
+				const player: Player = Object.assign(new Player(), {
+					id: playerData.id,
+					fullName: playerData.fullName,
+					firstName: playerData.firstName,
+					lastName: playerData.lastName,
+					primaryNumber: playerData.primaryNumber,
+					birthDate: playerData.birthDate,
+					currentAge: playerData.currentAge,
+					birthCity: playerData.birthCity,
+					birthCountry: playerData.birthCountry,
+					nationality: playerData.nationality,
+					height: playerData.height,
+					weight: playerData.weight,
+					active: playerData.active,
+					alternateCaptain: playerData.alternateCaptain,
+					captain: playerData.captain,
+					rookie: playerData.rookie,
+					shootsCatches: playerData.shootsCatches,
+					rosterStatus: playerData.rosterStatus,
+					primaryPosition: playerData.primaryPosition.type,
+					currantAge: playerData.currentAge,
+					currentTeamId: playerData.currentTeam && playerData.currentTeam.id,
+				});
+				playerProfiles.push(player);
+			}
+
+			if (playerProfiles.length) {
+				Logger.info(`Found ${playerProfiles.length} new players`);
+				await this._playerRepository.save(playerProfiles, { chunk: 1000 });
+			}
+		} catch (ex) {
+			console.error(ex);
+		}
 	}
 
 	async crawlGames(startDate: Date, endDate: Date) {
@@ -193,11 +233,18 @@ export default class CrawlController {
 
 					const events: Event[] = gameEvents.data.liveData.plays.allPlays.length ? getEvents(gamePk, gameEvents, gameShifts) : constructEvents(gameEvents);
 
+					const results: Result[] = getResults(gamePk, gameEvents, gameSummaries, gameShifts);
+
+					if (results.length) {
+						await this._resultRepository.save(results);
+					}
+
 					if (events.length) {
 						await this._eventRepository.save(events, { chunk: 1000 });
-						const count: number = await this._eventRepository.count();
-						console.log(count);
 					}
+
+					const count: number = await this._eventRepository.count();
+					console.log(count);
 				}
 			}
 		} catch (ex) {

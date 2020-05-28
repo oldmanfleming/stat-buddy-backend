@@ -59,3 +59,8 @@ export enum GameType {
 	AllStarGameType = 'A',
 	PreSeasonGameType = 'PR',
 }
+
+export enum HomeRoad {
+	Home = 'H',
+	Road = 'R',
+}
