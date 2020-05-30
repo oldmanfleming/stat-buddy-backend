@@ -53,7 +53,7 @@ export enum EventType {
 }
 
 @Entity('events')
-@Index(['timestamp', 'eventType', 'playTime', 'gameType', 'teamStrength', 'opposingStrength'])
+@Index(['timestamp', 'eventType', 'playTime', 'gameType', 'teamStrength', 'opposingStrength', 'teamScore', 'opposingTeamScore'])
 export class Event {
 	@PrimaryColumn('int')
 	gamePk!: number;

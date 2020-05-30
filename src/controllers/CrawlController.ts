@@ -9,13 +9,16 @@ import Logger from '../Logger';
 import EventRepository from '../repositories/EventRepository';
 import TeamRepository from '../repositories/TeamRepository';
 import PlayerRepository from '../repositories/PlayerRepository';
-import { Event } from '../entities/Event';
 import { Team } from '../entities/Team';
 import { Player } from '../entities/Player';
+import { Shift } from '../entities/Shift';
+import { Event } from '../entities/Event';
+import { Result } from '../entities/Result';
 
-import { GameType } from '../lib/Constants';
 import { getEvents } from '../lib/EventParser';
 import { constructEvents } from '../lib/EventConstructor';
+import { getResults } from '../lib/ResultParser';
+import { GameType } from '../lib/Constants';
 import GameEvents from '../lib/interfaces/GameEvent';
 import GameShifts from '../lib/interfaces/GameShifts';
 import GameSummaries from '../lib/interfaces/GameSummaries';
@@ -23,9 +26,9 @@ import TeamProfile, { TeamData } from '../lib/interfaces/TeamProfile';
 import PlayerProfile, { Person } from '../lib/interfaces/PlayerProfile';
 import AdminAuthentication from '../middleware/AdminAuthentication';
 import PlayerList from '../lib/interfaces/PlayerList';
-import { Result } from '../entities/Result';
 import ResultRepository from '../repositories/ResultRepository';
-import { getResults } from '../lib/ResultParser';
+import { getShifts } from '../lib/ShiftParser';
+import ShiftRepository from '../repositories/ShiftRepository';
 
 @route('/api/crawl')
 @before([AdminAuthentication])
@@ -34,6 +37,7 @@ export default class CrawlController {
 	private _playerRepository: PlayerRepository;
 	private _teamRepository: TeamRepository;
 	private _resultRepository: ResultRepository;
+	private _shiftRepository: ShiftRepository;
 
 	// Any Dependencies registered to the container can be injected here
 	constructor({ connection }: { connection: Connection }) {
@@ -41,6 +45,7 @@ export default class CrawlController {
 		this._playerRepository = connection.getCustomRepository(PlayerRepository);
 		this._teamRepository = connection.getCustomRepository(TeamRepository);
 		this._resultRepository = connection.getCustomRepository(ResultRepository);
+		this._shiftRepository = connection.getCustomRepository(ShiftRepository);
 	}
 
 	@route('/teams')
@@ -152,10 +157,10 @@ export default class CrawlController {
 
 			const newPlayerIds: number[] = playerIds.filter((pId: number) => !existingPlayersSet.has(pId));
 
+			Logger.info(`Found ${newPlayerIds.length} new players`);
+
 			const playerProfiles: Player[] = [];
-			for (let i: number = 0; i < newPlayerIds.length; i += 1) {
-				console.log(i);
-				const playerId: number = newPlayerIds[i];
+			for (const playerId of newPlayerIds) {
 				const playerProfile: PlayerProfile = await request(`https://statsapi.web.nhl.com/api/v1/people/${playerId}?expand=person`);
 				const playerData: Person = playerProfile.data.people[0];
 				const player: Player = Object.assign(new Player(), {
@@ -188,6 +193,8 @@ export default class CrawlController {
 				Logger.info(`Found ${playerProfiles.length} new players`);
 				await this._playerRepository.save(playerProfiles, { chunk: 1000 });
 			}
+
+			Logger.info('Finished crawling players');
 		} catch (ex) {
 			console.error(ex);
 		}
@@ -209,8 +216,8 @@ export default class CrawlController {
 					(game: any) => game.gameType !== GameType.AllStarGameType && game.gameType !== GameType.PreSeasonGameType,
 				);
 
-				for (let i: number = 5; i < 6; i++) {
-					const gamePk: number = games[i].gamePk;
+				for (const game of games) {
+					const gamePk: number = game.gamePk;
 					Logger.info(`Beginning game ${gamePk}`);
 
 					const gameEvents: GameEvents = await request(`https://statsapi.web.nhl.com/api/v1/game/${gamePk}/feed/live`);
@@ -235,6 +242,8 @@ export default class CrawlController {
 
 					const results: Result[] = getResults(gamePk, gameEvents, gameSummaries, gameShifts);
 
+					const shifts: Shift[] = getShifts(gameShifts, gameEvents);
+
 					if (results.length) {
 						await this._resultRepository.save(results);
 					}
@@ -243,8 +252,16 @@ export default class CrawlController {
 						await this._eventRepository.save(events, { chunk: 1000 });
 					}
 
-					const count: number = await this._eventRepository.count();
-					console.log(count);
+					if (shifts.length) {
+						await this._shiftRepository.save(shifts, { chunk: 1000 });
+					}
+
+					const resultCount: number = await this._resultRepository.count();
+					const eventCount: number = await this._eventRepository.count();
+					const shiftCount: number = await this._shiftRepository.count();
+					console.log(eventCount);
+					console.log(resultCount);
+					console.log(shiftCount);
 				}
 			}
 		} catch (ex) {
