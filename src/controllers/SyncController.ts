@@ -30,7 +30,7 @@ import ResultRepository from '../repositories/ResultRepository';
 import { getShifts } from '../lib/ShiftParser';
 import ShiftRepository from '../repositories/ShiftRepository';
 
-@route('/api/crawl')
+@route('/v1/sync')
 @before([AdminAuthentication])
 export default class CrawlController {
 	private _eventRepository: EventRepository;

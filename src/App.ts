@@ -15,6 +15,7 @@ export async function connectWithRetry(): Promise<Connection> {
 			type: 'postgres',
 			url: process.env.TYPEORM_URL,
 			entities: [__dirname + '/entities/*.{ts,js}'],
+			logging: true,
 		});
 	} catch (err) {
 		Logger.error('failed to connect to db on startup - retrying in 5 seconds ', err);

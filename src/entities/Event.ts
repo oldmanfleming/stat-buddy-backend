@@ -53,7 +53,7 @@ export enum EventType {
 }
 
 @Entity('events')
-@Index(['timestamp', 'eventType', 'playTime', 'gameType', 'teamStrength', 'opposingStrength', 'teamScore', 'opposingTeamScore'])
+@Index(['timestamp', 'type', 'playTime', 'gameType', 'teamStrength', 'opposingStrength', 'teamScore', 'opposingTeamScore'])
 export class Event {
 	@PrimaryColumn('int')
 	gamePk!: number;
@@ -65,10 +65,10 @@ export class Event {
 	timestamp!: Date;
 
 	@PrimaryColumn('int')
-	eventIdx!: number;
+	idx!: number;
 
 	@Column()
-	eventType!: string;
+	type!: string;
 
 	@Column()
 	secondaryType!: string;

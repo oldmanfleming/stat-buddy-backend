@@ -40,24 +40,24 @@ function parseBoxScore(gamePk: number, gameType: string, timestamp: Date, team: 
 			const goalieStats: GoalieStats = playerStats.goalieStats;
 			for (let i: number = 0; i < goalieStats.powerPlaySaves; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Save;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Save;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 4;
 				events.push(event);
 			}
 			for (let i: number = 0; i < goalieStats.shortHandedSaves; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Save;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Save;
+				event.idx = eventIdx++;
 				event.opposingStrength = 4;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < goalieStats.evenSaves; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Save;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Save;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 5;
 				events.push(event);
@@ -66,24 +66,24 @@ function parseBoxScore(gamePk: number, gameType: string, timestamp: Date, team: 
 			// Goals Allowed
 			for (let i: number = 0; i < goalieStats.powerPlayShotsAgainst - goalieStats.powerPlaySaves; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.GoalAllowed;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.GoalAllowed;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 4;
 				events.push(event);
 			}
 			for (let i: number = 0; i < goalieStats.evenShotsAgainst - goalieStats.evenSaves; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.GoalAllowed;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.GoalAllowed;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < goalieStats.shortHandedShotsAgainst - goalieStats.shortHandedSaves; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.GoalAllowed;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.GoalAllowed;
+				event.idx = eventIdx++;
 				event.opposingStrength = 4;
 				event.teamStrength = 5;
 				events.push(event);
@@ -92,24 +92,24 @@ function parseBoxScore(gamePk: number, gameType: string, timestamp: Date, team: 
 			const skaterStats: SkaterStats = playerStats.skaterStats;
 			for (let i: number = 0; i < skaterStats.goals - skaterStats.powerPlayGoals - skaterStats.shortHandedGoals; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Goal;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Goal;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < skaterStats.powerPlayGoals; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Goal;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Goal;
+				event.idx = eventIdx++;
 				event.opposingStrength = 4;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < skaterStats.shortHandedGoals; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Goal;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Goal;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 4;
 				events.push(event);
@@ -117,24 +117,24 @@ function parseBoxScore(gamePk: number, gameType: string, timestamp: Date, team: 
 			// Assists
 			for (let i: number = 0; i < skaterStats.assists - skaterStats.powerPlayAssists - skaterStats.shortHandedAssists; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Assist;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Assist;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < skaterStats.powerPlayAssists; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Assist;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Assist;
+				event.idx = eventIdx++;
 				event.opposingStrength = 4;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < skaterStats.shortHandedAssists; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Assist;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Assist;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 4;
 				events.push(event);
@@ -143,56 +143,56 @@ function parseBoxScore(gamePk: number, gameType: string, timestamp: Date, team: 
 			// Others
 			for (let i: number = 0; i < skaterStats.shots - skaterStats.goals - skaterStats.powerPlayGoals - skaterStats.shortHandedGoals; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Shot;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Shot;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < skaterStats.hits; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Hit;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Hit;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < skaterStats.faceOffWins; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.FaceoffWin;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.FaceoffWin;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < skaterStats.faceoffTaken - skaterStats.faceOffWins; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.FaceoffLoss;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.FaceoffLoss;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < skaterStats.takeaways; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Takeaway;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Takeaway;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < skaterStats.giveaways; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.Giveaway;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.Giveaway;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 5;
 				events.push(event);
 			}
 			for (let i: number = 0; i < skaterStats.blocked; i += 1) {
 				const event: Event = Object.assign(new Event(), baseEvent);
-				event.eventType = EventType.BlockedShot;
-				event.eventIdx = eventIdx++;
+				event.type = EventType.BlockedShot;
+				event.idx = eventIdx++;
 				event.opposingStrength = 5;
 				event.teamStrength = 5;
 				events.push(event);

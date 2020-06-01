@@ -21,10 +21,10 @@ export function getEvent(eventType: EventType, playerId: number, metaInfo: MetaI
 	const event: Event = Object.assign(new Event(), {
 		gamePk,
 		gameType,
-		eventIdx: play.about.eventIdx,
+		idx: play.about.eventIdx,
 		timestamp: new Date(play.about.dateTime),
 		playTime: getTotalSeconds(play.about.period, play.about.periodTime, gameType),
-		eventType,
+		type: eventType,
 	});
 
 	// player info
