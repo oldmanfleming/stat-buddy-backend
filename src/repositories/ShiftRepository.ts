@@ -61,11 +61,7 @@ export default class ShiftRepository extends Repository<Shift> {
 	async getTimeOnIce(filterConditions: FilterConditions): Promise<Map<number, ShiftCounts>> {
 		let query: SelectQueryBuilder<Shift> = this.getShiftFilterQuery(filterConditions);
 
-		if (filterConditions.playerIds) {
-			query = query.select(['shift."playerId"', 'count(distinct(shift."gamePk"))', 'sum(shift.length)']);
-		}
-
-		query = query.groupBy('shift."playerId"');
+		query = query.select(['shift."playerId"', 'count(distinct(shift."gamePk"))', 'sum(shift.length)']).groupBy('shift."playerId"');
 
 		const results: any[] = await query.getRawMany();
 

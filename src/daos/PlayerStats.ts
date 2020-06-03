@@ -1,4 +1,4 @@
-import { EventCounts } from '../repositories/EventRepository';
+import { EventCounts, ZoneStarts } from '../repositories/EventRepository';
 import { ShiftCounts } from '../repositories/ShiftRepository';
 
 export class PlayerStats {
@@ -15,6 +15,8 @@ export class PlayerStats {
 	faceoffWins: number;
 	faceoffLosses: number;
 	faceoffPercentage: number;
+	penalties: number;
+	penaltiesDrawn: number;
 	blockedShots: number;
 	hits: number;
 	hitsAgainst: number;
@@ -31,8 +33,12 @@ export class PlayerStats {
 	onIceGoalsAllowed: number;
 	onIceSavePercentage: number;
 	PDO: number;
+	offensiveZoneStarts: number;
+	neutralZoneStarts: number;
+	defensiveZoneStarts: number;
+	offensiveZoneStartPercentage: number;
 
-	constructor(eventCounts: EventCounts, shiftCounts: ShiftCounts) {
+	constructor(eventCounts: EventCounts, shiftCounts: ShiftCounts, zoneStarts: ZoneStarts) {
 		this.gamesPlayed = shiftCounts.gamesPlayed;
 		this.timeOnIce = shiftCounts.timeOnIce / 60;
 		this.goals = eventCounts.GOAL;
@@ -46,6 +52,8 @@ export class PlayerStats {
 		this.faceoffWins = eventCounts.FACEOFF_WIN;
 		this.faceoffLosses = eventCounts.FACEOFF_LOSS;
 		this.faceoffPercentage = eventCounts.FACEOFF_WIN / (eventCounts.FACEOFF_WIN + eventCounts.FACEOFF_LOSS);
+		this.penalties = eventCounts.PENALTY_AGAINST;
+		this.penaltiesDrawn = eventCounts.PENALTY_FOR;
 		this.blockedShots = eventCounts.BLOCKED_SHOT;
 		this.hits = eventCounts.HIT;
 		this.hitsAgainst = eventCounts.HIT_AGAINST;
@@ -79,5 +87,9 @@ export class PlayerStats {
 		this.onIceGoalsAllowed = eventCounts.ON_ICE_GOAL_ALLOWED;
 		this.onIceSavePercentage = eventCounts.ON_ICE_SAVE / (eventCounts.ON_ICE_SAVE + eventCounts.ON_ICE_GOAL_ALLOWED);
 		this.PDO = this.onIceShootingPercentage + this.onIceSavePercentage;
+		this.offensiveZoneStarts = zoneStarts.offensiveStarts;
+		this.neutralZoneStarts = zoneStarts.neutralStarts;
+		this.defensiveZoneStarts = zoneStarts.defensiveStarts;
+		this.offensiveZoneStartPercentage = zoneStarts.offensiveStarts / (zoneStarts.offensiveStarts + zoneStarts.defensiveStarts);
 	}
 }

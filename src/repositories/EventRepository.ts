@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { EntityRepository, Repository, SelectQueryBuilder, Between } from 'typeorm';
 
-import { Event, EventType } from '../entities/Event';
+import { Event, EventType, Zone } from '../entities/Event';
 import { FilterConditions } from '../controllers/StatsController';
 
 export class EventCounts {
@@ -47,6 +48,12 @@ export class EventCounts {
 	[EventType.Takeaway]: number = 0;
 }
 
+export class ZoneStarts {
+	offensiveStarts: number = 0;
+	neutralStarts: number = 0;
+	defensiveStarts: number = 0;
+}
+
 @EntityRepository(Event)
 export default class EventRepository extends Repository<Event> {
 	getEventFilterQuery(filterConditions: FilterConditions): SelectQueryBuilder<Event> {
@@ -88,7 +95,9 @@ export default class EventRepository extends Repository<Event> {
 
 		if (playerIds) {
 			query = query.andWhere('event."playerId" IN (:...playerIds)', { playerIds });
-		} else if (teamIds) {
+		}
+
+		if (teamIds) {
 			query = query.andWhere('event."teamId" IN (:...teamIds)', { teamIds });
 		}
 
@@ -112,7 +121,6 @@ export default class EventRepository extends Repository<Event> {
 			if (!countsMap.has(result.playerId)) {
 				counts = new EventCounts();
 			} else {
-				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 				counts = countsMap.get(result.playerId)!;
 			}
 			counts[result.event_type] = parseInt(result.count);
@@ -120,5 +128,43 @@ export default class EventRepository extends Repository<Event> {
 		}
 
 		return countsMap;
+	}
+
+	async getZoneStarts(filterConditions: FilterConditions): Promise<Map<number, ZoneStarts>> {
+		let query: SelectQueryBuilder<Event> = this.getEventFilterQuery(filterConditions);
+
+		query = query
+			.select(['event."playerId"', 'zone', 'count(zone)'])
+			.andWhere('event.type IN (:...types)', { types: [EventType.FaceoffWin, EventType.FaceoffLoss, EventType.OnIceFaceoffWin, EventType.OnIceFaceoffLoss] })
+			.groupBy('event."playerId"')
+			.addGroupBy('event.zone');
+
+		const results: any[] = await query.getRawMany();
+
+		const zoneStartsMap: Map<number, ZoneStarts> = new Map<number, ZoneStarts>();
+
+		for (const result of results) {
+			let zoneStarts: ZoneStarts;
+			if (!zoneStartsMap.has(result.playerId)) {
+				zoneStarts = new ZoneStarts();
+			} else {
+				zoneStarts = zoneStartsMap.get(result.playerId)!;
+			}
+			const count: number = parseInt(result.count);
+			switch (result.zone) {
+				case Zone.Offensive:
+					zoneStarts.offensiveStarts = count;
+					break;
+				case Zone.Neutral:
+					zoneStarts.neutralStarts = count;
+					break;
+				case Zone.Defensive:
+					zoneStarts.defensiveStarts = count;
+					break;
+			}
+			zoneStartsMap.set(result.playerId, zoneStarts);
+		}
+
+		return zoneStartsMap;
 	}
 }
