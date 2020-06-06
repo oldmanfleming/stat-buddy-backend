@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { EntityRepository, Repository, SelectQueryBuilder, Between } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 
 import { Event, EventType, Zone } from '../entities/Event';
-import { FilterConditions } from '../controllers/StatsController';
+import { FilterConditions, QueryConditions, Sort } from '../middleware/ValidateMiddleware';
 
 export class EventCounts {
 	[EventType.Assist]: number = 0;
@@ -56,90 +56,73 @@ export class ZoneStarts {
 
 @EntityRepository(Event)
 export default class EventRepository extends Repository<Event> {
-	getEventFilterQuery(filterConditions: FilterConditions): SelectQueryBuilder<Event> {
-		const {
-			startDate,
-			endDate,
-			startTime,
-			endTime,
-			gameType,
-			strength,
-			playerIds,
-			teamIds,
-		}: {
-			startDate: string;
-			endDate: string;
-			startTime: number;
-			endTime: number;
-			gameType: string;
-			strength: Array<Array<string>>;
-			playerIds?: number[];
-			teamIds?: number[];
-		} = filterConditions;
+	getFilterSql(filterConditions: FilterConditions): string {
+		let sql: string = `
+			WHERE timestamp >= '${filterConditions.startDate}'
+			AND timestamp <= '${filterConditions.endDate}'
+			AND "playTime" >= ${filterConditions.startTime}
+			AND "playTime" <= ${filterConditions.endTime}
+		`;
 
-		let query: SelectQueryBuilder<Event> = this.createQueryBuilder('event').where({
-			timestamp: Between(startDate, endDate),
-			playTime: Between(startTime, endTime),
-		});
+		if (filterConditions.gameType) sql = sql + `\n AND "gameType" = '${filterConditions.gameType}'`;
 
-		if (gameType) {
-			query = query.andWhere('event."gameType" = :gameType', { gameType });
-		}
-
-		if (strength) {
-			for (const item of strength) {
-				const queryString: string = `event."${item[0]}" ${item[1]} ${isNaN(parseInt(item[2])) ? `event."${item[2]}"` : item[2]}`;
-				query = query.andWhere(queryString);
+		if (filterConditions.strength) {
+			for (const item of filterConditions.strength) {
+				sql = sql + `\n AND "${item[0]}" ${item[1]} ${isNaN(parseInt(item[2])) ? `"${item[2]}"` : item[2]}`;
 			}
 		}
-
-		if (playerIds) {
-			query = query.andWhere('event."playerId" IN (:...playerIds)', { playerIds });
-		}
-
-		if (teamIds) {
-			query = query.andWhere('event."teamId" IN (:...teamIds)', { teamIds });
-		}
-
-		return query;
+		return sql;
 	}
 
-	async getEventCounts(filterConditions: FilterConditions): Promise<Map<number, EventCounts>> {
-		let query: SelectQueryBuilder<Event> = this.getEventFilterQuery(filterConditions);
-
-		if (filterConditions.playerIds) {
-			query = query.select(['event."playerId"', 'event.type', 'count(event.type)']);
+	async getEventCounts(filterConditions: FilterConditions, playerIds?: number[], teamIds?: number[]): Promise<Map<number, EventCounts>> {
+		let sql: string = '';
+		if (playerIds) {
+			sql = `
+				SELECT "playerId" as id, type, count(type)
+				FROM events
+				${this.getFilterSql(filterConditions)}
+				AND "playerId" IN(${playerIds.join(`,`)})
+				GROUP BY "playerId", type
+			`;
+		} else if (teamIds) {
+			sql = `
+				SELECT "teamId" as id, type, count(type)
+				FROM events
+				${this.getFilterSql(filterConditions)}
+				AND "teamId" IN(${teamIds.join(`,`)})
+				GROUP BY "teamId", type
+			`;
 		}
-		query = query.groupBy('event."playerId"').addGroupBy('event.type');
 
-		const results: any[] = await query.getRawMany();
+		const results: any[] = await this.query(sql);
 
 		const countsMap: Map<number, EventCounts> = new Map<number, EventCounts>();
 
 		for (const result of results) {
 			let counts: EventCounts;
-			if (!countsMap.has(result.playerId)) {
+			if (!countsMap.has(result.id)) {
 				counts = new EventCounts();
 			} else {
-				counts = countsMap.get(result.playerId)!;
+				counts = countsMap.get(result.id)!;
 			}
-			counts[result.event_type] = parseInt(result.count);
-			countsMap.set(result.playerId, counts);
+			counts[result.type] = parseInt(result.count);
+			countsMap.set(result.id, counts);
 		}
 
 		return countsMap;
 	}
 
-	async getZoneStarts(filterConditions: FilterConditions): Promise<Map<number, ZoneStarts>> {
-		let query: SelectQueryBuilder<Event> = this.getEventFilterQuery(filterConditions);
+	async getZoneStarts(filterConditions: FilterConditions, playerIds: number[]): Promise<Map<number, ZoneStarts>> {
+		const sql: string = `
+			SELECT "playerId", zone, count(zone)
+			FROM events
+			${this.getFilterSql(filterConditions)}
+			AND "playerId" IN (${playerIds.join(`,`)})
+			AND type IN ('${[EventType.FaceoffWin, EventType.FaceoffLoss, EventType.OnIceFaceoffWin, EventType.OnIceFaceoffLoss].join(`','`)}')
+			GROUP BY "playerId", zone
+		`;
 
-		query = query
-			.select(['event."playerId"', 'zone', 'count(zone)'])
-			.andWhere('event.type IN (:...types)', { types: [EventType.FaceoffWin, EventType.FaceoffLoss, EventType.OnIceFaceoffWin, EventType.OnIceFaceoffLoss] })
-			.groupBy('event."playerId"')
-			.addGroupBy('event.zone');
-
-		const results: any[] = await query.getRawMany();
+		const results: any[] = await this.query(sql);
 
 		const zoneStartsMap: Map<number, ZoneStarts> = new Map<number, ZoneStarts>();
 
@@ -166,5 +149,95 @@ export default class EventRepository extends Repository<Event> {
 		}
 
 		return zoneStartsMap;
+	}
+
+	async getTopIds(filterConditions: FilterConditions, queryConditions: QueryConditions): Promise<number[]> {
+		let forTypes: EventType[] = [];
+		let againstTypes: EventType[] = [];
+		switch (queryConditions.sort) {
+			case Sort.Goals:
+				forTypes = [EventType.Goal];
+				break;
+			case Sort.Assists:
+				forTypes = [EventType.Assist];
+				break;
+			case Sort.Points:
+				forTypes = [EventType.Goal, EventType.Assist];
+				break;
+			case Sort.CorsiForPercentage:
+				forTypes = [
+					EventType.Goal,
+					EventType.Assist,
+					EventType.Shot,
+					EventType.ShotBlocked,
+					EventType.ShotMissed,
+					EventType.OnIceGoal,
+					EventType.OnIceShot,
+					EventType.OnIceShotBlocked,
+					EventType.OnIceShotMissed,
+				];
+				againstTypes = [EventType.OnIceGoalAllowed, EventType.OnIceSave, EventType.BlockedShot, EventType.OnIceBlockedShot, EventType.OnIceMissedShot];
+				break;
+			case Sort.FenwickForPercentage:
+				forTypes = [
+					EventType.Goal,
+					EventType.Assist,
+					EventType.Shot,
+					EventType.ShotMissed,
+					EventType.OnIceGoal,
+					EventType.OnIceShot,
+					EventType.OnIceShotMissed,
+				];
+				againstTypes = [EventType.OnIceGoalAllowed, EventType.OnIceSave, EventType.OnIceMissedShot];
+				break;
+			case Sort.OffensiveZoneStartsPercentage:
+				break;
+			case Sort.PDO:
+				break;
+		}
+
+		if (forTypes.length && againstTypes.length) {
+			const sql: string = `
+				SELECT f."playerId", (f.count / (f.count + a.count)) as stat
+				FROM (
+					SELECT "playerId", cast(count(type) as decimal)
+					FROM events
+					${this.getFilterSql(filterConditions)}
+					AND type in ('${forTypes.join(`','`)}')
+					AND "playerType" != 'G'
+					GROUP BY "playerId"
+				) AS f 
+				INNER JOIN (
+					SELECT "playerId", cast(count(type) as decimal)
+					FROM events
+					${this.getFilterSql(filterConditions)}
+					AND type in ('${againstTypes.join(`','`)}')
+					AND "playerType" != 'G'
+					GROUP BY "playerId"
+				) AS a ON f."playerId" = a."playerId"
+				WHERE f.count + a.count > 400
+				ORDER BY stat ${queryConditions.order}
+				OFFSET ${queryConditions.offset}
+				LIMIT ${queryConditions.limit}
+			`;
+			const results: any[] = await this.query(sql);
+			return results.map((result: any) => result.playerId);
+		} else if (forTypes.length && !againstTypes.length) {
+			const sql: string = `
+				SELECT "playerId", cast(count(type) as decimal)
+				FROM events
+				${this.getFilterSql(filterConditions)}
+				AND type in ('${forTypes.join(`','`)}')
+				AND "playerType" != 'G'
+				GROUP BY "playerId"
+				ORDER BY count ${queryConditions.order}
+				OFFSET ${queryConditions.offset}
+				LIMIT ${queryConditions.limit}
+			`;
+			const results: any[] = await this.query(sql);
+			return results.map((result: any) => result.playerId);
+		} else {
+			return [];
+		}
 	}
 }

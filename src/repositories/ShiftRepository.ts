@@ -1,7 +1,7 @@
-import { EntityRepository, Repository, SelectQueryBuilder, Between } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 
 import { Shift } from '../entities/Shift';
-import { FilterConditions } from '../controllers/StatsController';
+import { FilterConditions } from '../middleware/ValidateMiddleware';
 
 export class ShiftCounts {
 	timeOnIce: number;
@@ -15,55 +15,36 @@ export class ShiftCounts {
 
 @EntityRepository(Shift)
 export default class ShiftRepository extends Repository<Shift> {
-	getShiftFilterQuery(filterConditions: FilterConditions): SelectQueryBuilder<Shift> {
-		const {
-			startDate,
-			endDate,
-			startTime,
-			endTime,
-			gameType,
-			strength,
-			playerIds,
-		}: {
-			startDate: string;
-			endDate: string;
-			startTime: number;
-			endTime: number;
-			gameType: string;
-			strength: Array<Array<string>>;
-			playerIds?: number[];
-		} = filterConditions;
+	getFilterSql(filterConditions: FilterConditions): string {
+		let sql: string = `
+			WHERE timestamp >= '${filterConditions.startDate}'
+			AND timestamp <= '${filterConditions.endDate}'
+			AND "startTime" >= ${filterConditions.startTime}
+			AND "startTime" <= ${filterConditions.endTime}
+			AND "endTime" >= ${filterConditions.startTime}
+			AND "endTime" <= ${filterConditions.endTime}
+		`;
 
-		let query: SelectQueryBuilder<Shift> = this.createQueryBuilder('shift').where({
-			timestamp: Between(startDate, endDate),
-			startTime: Between(startTime, endTime),
-			endTime: Between(startTime, endTime),
-		});
+		if (filterConditions.gameType) sql = sql + `\n AND "gameType" = '${filterConditions.gameType}'`;
 
-		if (gameType) {
-			query = query.andWhere('shift."gameType" = :gameType', { gameType });
-		}
-
-		if (strength) {
-			for (const item of strength) {
-				const queryString: string = `shift."${item[0]}" ${item[1]} ${isNaN(parseInt(item[2])) ? `shift."${item[2]}"` : item[2]}`;
-				query = query.andWhere(queryString);
+		if (filterConditions.strength) {
+			for (const item of filterConditions.strength) {
+				sql = sql + `\n AND "${item[0]}" ${item[1]} ${isNaN(parseInt(item[2])) ? `"${item[2]}"` : item[2]}`;
 			}
 		}
-
-		if (playerIds) {
-			query = query.andWhere('shift."playerId" IN (:...playerIds)', { playerIds });
-		}
-
-		return query;
+		return sql;
 	}
 
-	async getTimeOnIce(filterConditions: FilterConditions): Promise<Map<number, ShiftCounts>> {
-		let query: SelectQueryBuilder<Shift> = this.getShiftFilterQuery(filterConditions);
+	async getTimeOnIce(filterConditions: FilterConditions, playerIds: number[]): Promise<Map<number, ShiftCounts>> {
+		const sql: string = `
+			SELECT "playerId", count(distinct("gamePk")), sum(length)
+			FROM shifts
+			${this.getFilterSql(filterConditions)}
+			AND "playerId" IN(${playerIds.join(`,`)})
+			GROUP BY "playerId"
+		`;
 
-		query = query.select(['shift."playerId"', 'count(distinct(shift."gamePk"))', 'sum(shift.length)']).groupBy('shift."playerId"');
-
-		const results: any[] = await query.getRawMany();
+		const results: any[] = await this.query(sql);
 
 		const playerTimeMap: Map<number, ShiftCounts> = new Map<number, ShiftCounts>();
 

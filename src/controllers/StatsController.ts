@@ -4,50 +4,10 @@ import { Context } from 'koa';
 import { assert, string } from '@hapi/joi';
 import { Connection } from 'typeorm';
 
-import ValidateFilter from '../middleware/ValidateFilter';
+import { FilterConditions, ValidateFilter, QueryConditions, VaildateQuery } from '../middleware/ValidateMiddleware';
 import EventRepository, { EventCounts, ZoneStarts } from '../repositories/EventRepository';
 import ShiftRepository, { ShiftCounts } from '../repositories/ShiftRepository';
 import { PlayerStats } from '../daos/PlayerStats';
-
-export class FilterConditions {
-	startDate: string;
-	endDate: string;
-	startTime: number;
-	endTime: number;
-	gameType: string;
-	strength: Array<Array<string>>;
-	playerIds?: number[];
-	teamIds?: number[];
-
-	constructor({
-		startDate,
-		endDate,
-		startTime,
-		endTime,
-		gameType,
-		strength,
-		playerIds,
-		teamIds,
-	}: {
-		startDate: string;
-		endDate: string;
-		startTime: number;
-		endTime: number;
-		gameType: string;
-		strength: Array<Array<string>>;
-		playerIds?: number[];
-		teamIds?: number[];
-	}) {
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.gameType = gameType;
-		this.strength = strength;
-		this.playerIds = playerIds;
-		this.teamIds = teamIds;
-	}
-}
 
 export interface PlayersData {
 	eventCounts: Map<number, EventCounts>;
@@ -61,7 +21,7 @@ export interface PlayersData {
  * per 60?
  */
 @route('/v1/stats')
-@before([ValidateFilter])
+@before([ValidateFilter, VaildateQuery])
 export default class StatsController {
 	private eventRepository: EventRepository;
 	private shiftRepository: ShiftRepository;
@@ -77,9 +37,9 @@ export default class StatsController {
 		assert(ctx.params.id, string().regex(/^\d+$/));
 		const playerId: number = parseInt(ctx.params.id);
 
-		const filterConditions: FilterConditions = new FilterConditions({ ...ctx.request.body, playerIds: [playerId] });
+		const filterConditions: FilterConditions = new FilterConditions({ ...ctx.request.body });
 
-		const playersStats: PlayerStats[] = await this.getPlayersInternal(filterConditions);
+		const playersStats: PlayerStats[] = await this.getPlayersInternal(filterConditions, [playerId]);
 
 		if (!playersStats.length) {
 			ctx.body = undefined;
@@ -94,30 +54,27 @@ export default class StatsController {
 	@route('/player')
 	@POST()
 	async getPlayers(ctx: Context) {
-		const playerIds: number[] = [8471228, 8473994, 8478046, 8474849];
+		const queryConditions: QueryConditions = new QueryConditions(ctx.query);
+		const filterConditions: FilterConditions = new FilterConditions({ ...ctx.request.body });
 
-		const filterConditions: FilterConditions = new FilterConditions({ ...ctx.request.body, playerIds });
+		const playerIds: number[] = await this.eventRepository.getTopIds(filterConditions, queryConditions);
 
-		const playersStats: PlayerStats[] = await this.getPlayersInternal(filterConditions);
-
-		ctx.body = playersStats;
+		if (playerIds.length) {
+			ctx.body = await this.getPlayersInternal(filterConditions, playerIds);
+		}
 		ctx.status = OK;
 	}
 
-	async getPlayersInternal(filterConditions: FilterConditions): Promise<PlayerStats[]> {
+	async getPlayersInternal(filterConditions: FilterConditions, playerIds: number[]): Promise<PlayerStats[]> {
 		const playersStats: PlayerStats[] = [];
 
-		if (!filterConditions.playerIds) {
-			return playersStats;
-		}
-
 		const [playersEventCounts, playersShiftCounts, playersZoneStarts] = await Promise.all([
-			this.eventRepository.getEventCounts(filterConditions),
-			this.shiftRepository.getTimeOnIce(filterConditions),
-			this.eventRepository.getZoneStarts(filterConditions),
+			this.eventRepository.getEventCounts(filterConditions, playerIds),
+			this.shiftRepository.getTimeOnIce(filterConditions, playerIds),
+			this.eventRepository.getZoneStarts(filterConditions, playerIds),
 		]);
 
-		for (const playerId of filterConditions.playerIds) {
+		for (const playerId of playerIds) {
 			const eventCounts: EventCounts | undefined = playersEventCounts.get(playerId);
 			const shiftCounts: ShiftCounts | undefined = playersShiftCounts.get(playerId);
 			const zoneStarts: ZoneStarts | undefined = playersZoneStarts.get(playerId);
